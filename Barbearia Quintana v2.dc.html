@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="./support.js"></script>
+</head>
+
+<body>
+  <x-dc>
+    <helmet>
+      <title>Barbearia Quintana · Barbearia no Jardim Aurélia, Campinas</title>
+      <meta name="description"
+        content="Barbearia Quintana, desde 2016 no Jardim Aurélia, Campinas. Corte, barba e acabamento com hora marcada. Agende pelo WhatsApp (19) 99152-2327.">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+      <link
+        href="https://fonts.googleapis.com/css2?family=Rye&amp;family=Libre+Caslon+Display&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap"
+        rel="stylesheet">
+      <script src="./image-slot.js"></script>
+      <script
+        type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BarberShop","name":"Barbearia Quintana","foundingDate":"2016","founder":"João Navero Quintana","telephone":"+55 19 99152-2327","priceRange":"R$ 60","address":{"@type":"PostalAddress","streetAddress":"Av. Nossa Senhora da Consolação, 821","addressLocality":"Campinas","addressRegion":"SP","postalCode":"13033-140","addressCountry":"BR"},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"08:00","closes":"19:00"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"44"},"sameAs":["https://www.instagram.com/barbearia_quintana/"]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quanto custa um corte de cabelo na Barbearia Quintana?","acceptedAnswer":{"@type":"Answer","text":"O corte custa R$ 60. Os demais valores estão na seção de serviços."}},{"@type":"Question","name":"Como agendar um horário na Barbearia Quintana?","acceptedAnswer":{"@type":"Answer","text":"Pelo WhatsApp (19) 99152-2327. No site você escolhe serviço, dia e horário de preferência e a mensagem já vai pronta."}},{"@type":"Question","name":"Qual o horário de funcionamento?","acceptedAnswer":{"@type":"Answer","text":"De terça a sábado, das 8h às 19h. Domingo e segunda fechado."}},{"@type":"Question","name":"Onde fica a Barbearia Quintana em Campinas?","acceptedAnswer":{"@type":"Answer","text":"Av. Nossa Senhora da Consolação, 821, Jardim Aurélia, Campinas - SP, 13033-140."}},{"@type":"Question","name":"Quanto tempo dura o atendimento?","acceptedAnswer":{"@type":"Answer","text":"Um corte leva cerca de 45 minutos. Corte e barba, cerca de 1h15."}},{"@type":"Question","name":"Preciso agendar ou posso ir direto?","acceptedAnswer":{"@type":"Answer","text":"O atendimento é com hora marcada, para que você não espere. Se houver horário livre, encaixamos."}}]}]}</script>
+      <style>
+        html {
+          scroll-behavior: smooth
+        }
+
+        body {
+          margin: 0;
+          background: #FCFAF7;
+          color: #2A211B;
+          font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+          -webkit-font-smoothing: antialiased
+        }
+
+        a {
+          color: #A04F37;
+          text-decoration: none
+        }
+
+        a:hover {
+          color: #8C5230
+        }
+
+        * {
+          box-sizing: border-box
+        }
+
+        :focus-visible {
+          outline: 2px solid #C86D51;
+          outline-offset: 3px
+        }
+      </style>
+    </helmet>
+
+    <div style="min-height:100vh;background:#FCFAF7;color:#2A211B;overflow-x:hidden">
+
+      <section id="topo" style="padding:12px">
+        <div
+          style="position:relative;border-radius:24px;overflow:hidden;min-height:min(880px,calc(100svh - 24px));display:flex;flex-direction:column;background:#5A3A28">
+          <div style="position:absolute;inset:0">
+            <sc-if value="{{ hasVideo }}" hint-placeholder-val="{{ false }}">
+              {{ heroVideoEl }}
+            </sc-if>
+            <sc-if value="{{ noVideo }}" hint-placeholder-val="{{ true }}">
+              <image-slot id="v2-hero" shape="rect"
+                src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=2000&q=80"
+                credit="Foto via Unsplash" credit-href="https://unsplash.com"
+                placeholder="Vídeo do João atendendo (loop horizontal)"></image-slot>
+            </sc-if>
+          </div>
+          <div
+            style="position:absolute;inset:0;pointer-events:none;background:linear-gradient({{ scrimDir }}, rgba(42,33,27,{{ scrim }}) 0%, rgba(42,33,27,0) 62%)">
+          </div>
+          <header
+            style="position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:clamp(16px,2.4vw,28px) clamp(16px,3vw,40px);pointer-events:none">
+            <a href="#topo" style="display:flex;align-items:center;gap:12px;color:#FCFAF7;pointer-events:auto">
+              <img src="assets/logo-q.png" alt="Barbearia Quintana"
+                style="width:40px;height:40px;border-radius:50%;display:block">
+              <span style="font-family:'Rye',serif;font-weight:400;font-size:22px;letter-spacing:0.02em">Quintana</span>
+            </a>
+            <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+              <nav style="display:flex;gap:36px;font-size:15px;pointer-events:auto">
+                <a href="#historia" style="color:#FCFAF7" style-hover="color:#FCFAF7;opacity:0.7">História</a>
+                <a href="#servicos" style="color:#FCFAF7" style-hover="color:#FCFAF7;opacity:0.7">Serviços</a>
+                <a href="#avaliacoes" style="color:#FCFAF7" style-hover="color:#FCFAF7;opacity:0.7">Avaliações</a>
+              </nav>
+            </sc-if>
+            <a href="#agendar"
+              style="display:flex;align-items:center;min-height:46px;padding:0 18px;border-radius:9999px;white-space:nowrap;flex:none;background:#FCFAF7;color:#2A211B;font-size:15px;font-weight:500;pointer-events:auto"
+              style-hover="background:#F2E9DE;color:#2A211B">{{ headerCta }}</a>
+          </header>
+          <div
+            style="position:relative;margin-top:auto;padding:0 clamp(16px,3vw,40px) clamp(24px,4vw,48px);display:flex;flex-direction:column;gap:clamp(20px,2.4vw,28px);max-width:900px;pointer-events:none">
+            <h1
+              style="margin:0;font-family:'Libre Caslon Display',serif;font-weight:400;font-size:clamp(44px,7.6vw,120px);line-height:1;letter-spacing:-0.015em;color:#FCFAF7;text-wrap:balance;text-shadow:0 1px 16px rgba(42,33,27,0.35)">
+              O ofício do avô, com hora marcada.</h1>
+            <p
+              style="margin:0;font-size:clamp(16px,1.3vw,19px);line-height:1.55;color:#FCFAF7;max-width:30em;text-shadow:0 1px 12px rgba(42,33,27,0.5)">
+              Barbearia Quintana. Corte e barba no Jardim Aurélia, em Campinas, desde 2016.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:12px;pointer-events:auto">
+              <a href="#agendar"
+                style="display:flex;align-items:center;gap:18px;min-height:54px;padding:0 6px 0 26px;border-radius:9999px;white-space:nowrap;flex:none;background:#FCFAF7;color:#2A211B;font-size:16px;font-weight:500"
+                style-hover="background:#F2E9DE;color:#2A211B">
+                <span>Agendar pelo WhatsApp</span>
+                <span
+                  style="width:42px;height:42px;border-radius:50%;background:#C86D51;color:#FCFAF7;display:flex;align-items:center;justify-content:center;font-size:18px">→</span>
+              </a>
+              <a href="#servicos"
+                style="display:flex;align-items:center;min-height:54px;padding:0 26px;border-radius:9999px;white-space:nowrap;flex:none;border:1px solid rgba(252,250,247,0.6);color:#FCFAF7;font-size:16px;font-weight:500"
+                style-hover="border-color:#FCFAF7;color:#FCFAF7;background:rgba(252,250,247,0.1)">Ver serviços</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="historia" style="max-width:1200px;margin:0 auto;padding:clamp(80px,10vw,140px) 24px">
+        <h2 data-reveal=""
+          style="margin:0;max-width:16em;font-family:'Libre Caslon Display',serif;font-weight:400;font-size:clamp(36px,4.8vw,66px);line-height:1.06;letter-spacing:-0.01em;color:#2A211B;text-wrap:balance">
+          Aprendido na cadeira do avô. <span style="color:#A89A8C">Feito do mesmo jeito desde 2016.</span></h2>
+        <div
+          style="margin-top:64px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:48px;align-items:start">
+          <div data-reveal="" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <figure style="margin:0;display:flex;flex-direction:column;gap:10px">
+              <div style="position:relative;aspect-ratio:4/5;border-radius:16px;overflow:hidden"><image-slot id="v2-avo"
+                  shape="rect"
+                  src="https://images.unsplash.com/photo-1567894340315-735d7c361db0?auto=format&fit=crop&w=1200&q=80"
+                  credit="Foto via Unsplash" credit-href="https://unsplash.com" placeholder="Foto do avô"></image-slot>
+              </div>
+              <figcaption style="font-size:13px;color:#8A7D70">O avô, na parede da barbearia</figcaption>
+            </figure>
+            <figure style="margin:48px 0 0;display:flex;flex-direction:column;gap:10px">
+              <div style="position:relative;aspect-ratio:4/5;border-radius:16px;overflow:hidden"><image-slot
+                  id="v2-antes" shape="rect"
+                  src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=1200&q=80"
+                  credit="Foto via Unsplash" credit-href="https://unsplash.com"
+                  placeholder="Sala antes da reforma"></image-slot></div>
+              <figcaption style="font-size:13px;color:#8A7D70">A sala, antes da reforma</figcaption>
+            </figure>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:40px">
+            <p data-reveal=""
+              style="margin:0;font-size:18px;line-height:1.65;color:#4A3F36;max-width:32em;text-wrap:pretty">João Navero
+              Quintana guardou do avô a navalha afiada, a toalha quente e a conversa sem pressa. Em 2016 reformou uma
+              sala vazia na Av. Nossa Senhora da Consolação e abriu a própria barbearia.</p>
+            <sc-if value="{{ showPillars }}" hint-placeholder-val="{{ true }}">
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:28px">
+                <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="3">
+                  <div data-reveal=""
+                    style="display:flex;flex-direction:column;gap:10px;padding-top:20px;border-top:1px solid #E6DED3">
+                    <h3 style="margin:0;font-size:17px;font-weight:500;color:#2A211B">{{ p.t }}</h3>
+                    <p style="margin:0;font-size:14px;line-height:1.55;color:#8A7D70">{{ p.d }}</p>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </section>
+
+      <section id="servicos" style="max-width:1200px;margin:0 auto;padding:0 24px clamp(80px,10vw,140px)">
+        <h2 data-reveal=""
+          style="margin:0;max-width:14em;font-family:'Libre Caslon Display',serif;font-weight:400;font-size:clamp(36px,4.8vw,66px);line-height:1.06;letter-spacing:-0.01em;color:#2A211B">
+          Serviços e valores. <span style="color:#A89A8C">Escolha e agende.</span></h2>
+        <div style="position:relative;margin-top:72px">
+          <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+            <div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:#E6DED3"></div>
+          </sc-if>
+          <div style="display:flex;flex-direction:column;gap:clamp(56px,8vw,120px)">
+            <sc-for list="{{ services }}" as="s" hint-placeholder-count="4">
+              <article
+                style="display:flex;flex-direction:{{ s.dir }};flex-wrap:wrap;align-items:center;gap:clamp(32px,6vw,96px)">
+                <div data-reveal="" style="flex:1 1 320px;display:flex;justify-content:{{ s.imgJustify }}">
+                  <div
+                    style="position:relative;width:100%;max-width:440px;aspect-ratio:4/5;border-radius:16px;overflow:hidden">
+                    <image-slot id="{{ s.slot }}" shape="rect" src="{{ s.img }}" credit="{{ s.credit }}"
+                      credit-href="{{ s.creditHref }}" placeholder="{{ s.ph }}"></image-slot>
+                  </div>
+                </div>
+                <div
+                  style="flex:1 1 320px;display:flex;flex-direction:column;gap:18px;align-items:{{ s.align }};text-align:{{ s.textAlign }}">
+                  <span style="font-size:13px;color:#8A7D70;white-space:nowrap">{{ s.duration }}</span>
+                  <h3 data-fill=""
+                    style="margin:0;font-family:'Rye',serif;font-weight:400;font-size:clamp(34px,4.2vw,58px);line-height:1.05;letter-spacing:0;color:transparent;-webkit-background-clip:text;background-clip:text;background-image:linear-gradient(90deg,#2A211B 0%,#2A211B 0%,#DDD3C7 0%)">
+                    {{ s.name }}</h3>
+                  <p style="margin:0;font-size:16px;line-height:1.6;color:#6E6156;max-width:24em">{{ s.desc }}</p>
+                  <div
+                    style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:{{ s.align }};margin-top:6px">
+                    <sc-if value="{{ showPrices }}" hint-placeholder-val="{{ true }}">
+                      <span
+                        style="font-size:22px;font-weight:500;color:#2A211B;letter-spacing:-0.01em;white-space:nowrap;flex:none">{{
+                        s.price }}</span>
+                    </sc-if>
+                    <button onClick="{{ s.onBook }}"
+                      style="display:flex;align-items:center;gap:14px;min-height:50px;padding:0 5px 0 22px;border-radius:9999px;white-space:nowrap;flex:none;border:1px solid #2A211B;background:transparent;color:#2A211B;font-family:inherit;font-size:15px;font-weight:500;cursor:pointer;transition:all 200ms ease"
+                      style-hover="background:#2A211B;color:#FCFAF7">
+                      <span>Agendar</span>
+                      <span
+                        style="width:40px;height:40px;border-radius:50%;background:#C86D51;color:#FCFAF7;display:flex;align-items:center;justify-content:center;font-size:16px">→</span>
+                    </button>
+                  </div>
+                </div>
+              </article>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section id="agendar" style="padding:12px">
+        <div style="border-radius:24px;background:#F3ECE3;padding:clamp(56px,7vw,104px) clamp(20px,4vw,64px)">
+          <div
+            style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:clamp(40px,6vw,88px);align-items:start">
+            <div style="display:flex;flex-direction:column;gap:44px">
+              <h2
+                style="margin:0;font-family:'Libre Caslon Display',serif;font-weight:400;font-size:clamp(36px,4.8vw,66px);line-height:1.06;letter-spacing:-0.01em;color:#2A211B">
+                Monte seu horário. <span style="color:#A89A8C">A mensagem vai pronta.</span></h2>
+              <div style="display:flex;flex-direction:column;gap:14px">
+                <span style="font-size:14px;font-weight:500;color:#6E6156">Serviço</span>
+                <div style="display:flex;flex-wrap:wrap;gap:8px">
+                  <sc-for list="{{ services }}" as="s" hint-placeholder-count="4">
+                    <button onClick="{{ s.onPick }}"
+                      style="min-height:46px;padding:0 20px;border-radius:9999px;border:1px solid {{ s.chipBorder }};background:{{ s.chipBg }};color:{{ s.chipColor }};font-family:inherit;font-size:15px;font-weight:500;cursor:pointer;transition:all 150ms ease">{{
+                      s.name }}</button>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:14px">
+                <span style="font-size:14px;font-weight:500;color:#6E6156">Dia de preferência</span>
+                <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:8px">
+                  <sc-for list="{{ days }}" as="d" hint-placeholder-count="10">
+                    <button onClick="{{ d.onPick }}"
+                      style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:62px;border-radius:14px;border:1px solid {{ d.border }};background:{{ d.bg }};color:{{ d.color }};font-family:inherit;cursor:pointer;transition:all 150ms ease">
+                      <span style="font-size:12px">{{ d.wd }}</span>
+                      <span style="font-size:17px;font-weight:500">{{ d.dm }}</span>
+                    </button>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:14px">
+                <span style="font-size:14px;font-weight:500;color:#6E6156">Horário de preferência</span>
+                <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px">
+                  <sc-for list="{{ times }}" as="h" hint-placeholder-count="11">
+                    <button onClick="{{ h.onPick }}"
+                      style="min-height:46px;border-radius:9999px;white-space:nowrap;flex:none;border:1px solid {{ h.border }};background:{{ h.bg }};color:{{ h.color }};font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:all 150ms ease">{{
+                      h.label }}</button>
+                  </sc-for>
+                </div>
+              </div>
+              <label style="display:flex;flex-direction:column;gap:14px">
+                <span style="font-size:14px;font-weight:500;color:#6E6156">Seu nome (opcional)</span>
+                <input value="{{ name }}" onChange="{{ onName }}" placeholder="Como podemos te chamar?"
+                  style="width:100%;min-height:52px;background:#FCFAF7;border:1px solid #E0D6CA;color:#2A211B;padding:0 20px;border-radius:9999px;font-family:inherit;font-size:16px"
+                  style-focus="outline:none;border-color:#C86D51;box-shadow:0 0 0 3px rgba(200,109,81,0.18)">
+              </label>
+            </div>
+            <aside
+              style="position:sticky;top:24px;background:#FCFAF7;border-radius:20px;padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:28px">
+              <div style="display:flex;align-items:center;gap:14px">
+                <img src="assets/logo-q.png" alt="" style="width:44px;height:44px;border-radius:50%">
+                <div style="display:flex;flex-direction:column;gap:2px">
+                  <span style="font-size:17px;font-weight:500">Seu pedido</span>
+                  <span style="font-size:13px;color:#8A7D70">Para (19) 99152-2327</span>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column">
+                <sc-for list="{{ summary }}" as="row" hint-placeholder-count="4">
+                  <div
+                    style="display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-top:1px solid #EDE6DC;font-size:15px">
+                    <span style="color:#8A7D70">{{ row.k }}</span>
+                    <span style="color:#2A211B;font-weight:500;text-align:right">{{ row.v }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <a href="{{ waLink }}" target="_blank" rel="noopener"
+                style="display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:58px;padding:0 6px 0 26px;border-radius:9999px;white-space:nowrap;flex:none;background:#2A211B;color:#FCFAF7;font-size:16px;font-weight:500"
+                style-hover="background:#3D3129;color:#FCFAF7">
+                <span>Enviar no WhatsApp</span>
+                <span
+                  style="width:46px;height:46px;border-radius:50%;background:#C86D51;color:#FCFAF7;display:flex;align-items:center;justify-content:center;font-size:18px">→</span>
+              </a>
+              <span style="font-size:13px;line-height:1.5;color:#8A7D70">O horário é confirmado pelo João na
+                conversa.</span>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="avaliacoes" style="max-width:1200px;margin:0 auto;padding:clamp(80px,10vw,140px) 24px">
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:28px">
+          <div data-reveal="" style="display:flex;flex-direction:column;gap:20px">
+            <div style="display:flex;align-items:center;gap:14px">
+              <div role="img" aria-label="Nota 4,9 de 5" style="display:flex;gap:4px"><svg width="26" height="26"
+                  viewBox="0 0 24 24" aria-hidden="true" style="display:block">
+                  <path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"
+                    fill="#C86D51"></path>
+                </svg><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" style="display:block">
+                  <path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"
+                    fill="#C86D51"></path>
+                </svg><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" style="display:block">
+                  <path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"
+                    fill="#C86D51"></path>
+                </svg><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" style="display:block">
+                  <path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"
+                    fill="#C86D51"></path>
+                </svg><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" style="display:block">
+                  <path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"
+                    fill="#C86D51"></path>
+                </svg></div><span style="font-size:15px;font-weight:500;color:#2A211B">4,9</span>
+            </div>
+            <h2
+              style="margin:0;max-width:14em;font-family:'Libre Caslon Display',serif;font-weight:400;font-size:clamp(36px,4.8vw,66px);line-height:1.06;letter-spacing:-0.01em;color:#2A211B">
+              Nota 4,9 no Google. <span style="color:#A89A8C">Em 44 avaliações.</span></h2>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px">
+            <a href="https://www.google.com/maps/place/?q=place_id:ChIJCb-LrdrJyJQRS_iGaQnf6BM" target="_blank"
+              rel="noopener"
+              style="display:flex;align-items:center;min-height:48px;padding:0 22px;border-radius:9999px;white-space:nowrap;flex:none;border:1px solid #2A211B;color:#2A211B;font-size:15px;font-weight:500"
+              style-hover="background:#2A211B;color:#FCFAF7">Ver no Google</a>
+            <a href="{{ reviewLink }}" target="_blank" rel="noopener"
+              style="display:flex;align-items:center;gap:14px;min-height:52px;padding:0 6px 0 22px;border-radius:9999px;white-space:nowrap;flex:none;background:#2A211B;color:#FCFAF7;font-size:15px;font-weight:500;transition:background 200ms ease"
+              style-hover="background:#3D3129;color:#FCFAF7"><span>Deixar minha avaliação</span><span
+                style="width:40px;height:40px;border-radius:50%;background:#C86D51;display:flex;align-items:center;justify-content:center"><svg
+                  width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="display:block">
+                  <path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"
+                    fill="#FCFAF7"></path>
+                </svg></span></a>
+          </div>
+        </div>
+        <div
+          style="margin-top:64px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:40px">
+          <sc-for list="{{ reviews }}" as="rv" hint-placeholder-count="3">
+            <figure data-reveal=""
+              style="margin:0;display:flex;flex-direction:column;gap:24px;padding-top:24px;border-top:1px solid #E6DED3">
+              <div role="img" aria-label="5 de 5 estrelas" style="display:flex;gap:3px"><svg width="18" height="18"
+                  viewBox="0 0 24 24" aria-hidden="true" style="display:block">
+                  <path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"
+                    fill="#C86D51"></path>
+                </svg><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="display:block">
+                  <path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"
+                    fill="#C86D51"></path>
+                </svg><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="display:block">
+                  <path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"
+                    fill="#C86D51"></path>
+                </svg><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="display:block">
+                  <path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"
+                    fill="#C86D51"></path>
+                </svg><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="display:block">
+                  <path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"
+                    fill="#C86D51"></path>
+                </svg></div>
+              <blockquote
+                style="margin:0;font-family:'Libre Caslon Display',serif;font-size:24px;line-height:1.35;letter-spacing:0;color:#2A211B;text-wrap:pretty">
+                “{{ rv.text }}”</blockquote>
+              <figcaption style="font-size:14px;color:#8A7D70">{{ rv.name }} · Google</figcaption>
+            </figure>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="padding:0 12px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px">
+          <div style="position:relative;aspect-ratio:1/1;border-radius:20px;overflow:hidden"><image-slot id="v2-g1"
+              shape="rect"
+              src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1200&q=80"
+              credit="Foto via Unsplash" credit-href="https://unsplash.com" placeholder="Fachada"></image-slot></div>
+          <div style="position:relative;aspect-ratio:1/1;border-radius:20px;overflow:hidden"><image-slot id="v2-g2"
+              shape="rect"
+              src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=1200&q=80"
+              credit="Foto via Unsplash" credit-href="https://unsplash.com" placeholder="Cadeira"></image-slot></div>
+          <div style="position:relative;aspect-ratio:1/1;border-radius:20px;overflow:hidden"><image-slot id="v2-g3"
+              shape="rect"
+              src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=1200&q=80"
+              credit="Foto via Unsplash" credit-href="https://unsplash.com"
+              placeholder="Navalha e toalha quente"></image-slot></div>
+          <div style="position:relative;aspect-ratio:1/1;border-radius:20px;overflow:hidden"><image-slot id="v2-g4"
+              shape="rect"
+              src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?auto=format&fit=crop&w=1200&q=80"
+              credit="Foto via Unsplash" credit-href="https://unsplash.com" placeholder="Ambiente interno"></image-slot>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq"
+        style="max-width:1200px;margin:0 auto;padding:clamp(80px,10vw,140px) 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:56px;align-items:start">
+        <h2
+          style="margin:0;font-family:'Libre Caslon Display',serif;font-weight:400;font-size:clamp(36px,4.8vw,66px);line-height:1.06;letter-spacing:-0.01em;color:#2A211B">
+          Dúvidas frequentes. <span style="color:#A89A8C">Antes de vir.</span></h2>
+        <div style="display:flex;flex-direction:column">
+          <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
+            <div style="border-top:1px solid #E6DED3">
+              <button onClick="{{ f.toggle }}" aria-expanded="{{ f.open }}"
+                style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;background:transparent;border:0;color:#2A211B;font-family:inherit;text-align:left;cursor:pointer">
+                <h3 style="margin:0;font-size:18px;font-weight:500;line-height:1.4;letter-spacing:-0.01em">{{ f.q }}
+                </h3>
+                <span
+                  style="flex:none;width:36px;height:36px;border-radius:50%;border:1px solid #E0D6CA;display:flex;align-items:center;justify-content:center;font-size:18px;color:#2A211B">{{
+                  f.icon }}</span>
+              </button>
+              <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+                <p style="margin:0;padding:0 56px 26px 0;font-size:16px;line-height:1.65;color:#6E6156">{{ f.a }}</p>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section id="local" style="padding:0 12px 12px">
+        <div
+          style="border-radius:24px;overflow:hidden;background:#2A211B;color:#FCFAF7;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))">
+          <div style="padding:clamp(40px,6vw,88px) clamp(24px,4vw,64px);display:flex;flex-direction:column;gap:36px">
+            <h2
+              style="margin:0;font-family:'Libre Caslon Display',serif;font-weight:400;font-size:clamp(36px,4.8vw,66px);line-height:1.04;letter-spacing:-0.01em;color:#FCFAF7">
+              Terça a sábado, <span style="color:#DE8A6E">das 8h às 19h.</span></h2>
+            <div style="display:flex;flex-direction:column">
+              <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Barbearia+Quintana+Av.+Nossa+Senhora+da+Consola%C3%A7%C3%A3o+821+Campinas"
+                target="_blank" rel="noopener"
+                style="display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-top:1px solid #4A3F36;color:#FCFAF7;font-size:16px"
+                style-hover="color:#DE8A6E">
+                <span>Av. Nossa Senhora da Consolação, 821 · Jardim Aurélia</span><span>↗</span>
+              </a>
+              <a href="tel:+5519991522327"
+                style="display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-top:1px solid #4A3F36;color:#FCFAF7;font-size:16px"
+                style-hover="color:#DE8A6E">
+                <span>(19) 99152-2327</span><span>↗</span>
+              </a>
+              <a href="https://www.instagram.com/barbearia_quintana/" target="_blank" rel="noopener"
+                style="display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-top:1px solid #4A3F36;border-bottom:1px solid #4A3F36;color:#FCFAF7;font-size:16px"
+                style-hover="color:#DE8A6E">
+                <span>@barbearia_quintana</span><span>↗</span>
+              </a>
+            </div>
+            <a href="#agendar"
+              style="align-self:flex-start;display:flex;align-items:center;gap:18px;min-height:54px;padding:0 6px 0 26px;border-radius:9999px;white-space:nowrap;flex:none;background:#FCFAF7;color:#2A211B;font-size:16px;font-weight:500"
+              style-hover="background:#F2E9DE;color:#2A211B">
+              <span>Agendar horário</span>
+              <span
+                style="width:42px;height:42px;border-radius:50%;background:#C86D51;color:#FCFAF7;display:flex;align-items:center;justify-content:center;font-size:18px">→</span>
+            </a>
+          </div>
+          <iframe title="Mapa da Barbearia Quintana"
+            src="https://www.google.com/maps?q=Av.+Nossa+Senhora+da+Consola%C3%A7%C3%A3o,+821,+Campinas+-+SP&amp;output=embed"
+            loading="lazy"
+            style="width:100%;min-height:420px;height:100%;border:0;filter:grayscale(0.5) sepia(0.15)"></iframe>
+        </div>
+      </section>
+
+      <footer
+        style="max-width:1200px;margin:0 auto;padding:40px 24px {{ footerPad }};display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;font-size:14px;color:#8A7D70">
+        <div style="display:flex;align-items:center;gap:12px">
+          <img src="assets/logo-q.png" alt="" style="width:32px;height:32px;border-radius:50%">
+          <span>© 2026 Barbearia Quintana · Campinas, SP</span>
+        </div>
+        <a href="#topo" style="color:#2A211B" style-hover="color:#A04F37">Voltar ao topo ↑</a>
+      </footer>
+
+      <sc-if value="{{ mobileBar }}" hint-placeholder-val="{{ false }}">
+        <div style="position:fixed;left:12px;right:12px;bottom:12px;z-index:40">
+          <a href="#agendar"
+            style="display:flex;align-items:center;justify-content:space-between;min-height:56px;padding:0 6px 0 24px;border-radius:9999px;white-space:nowrap;flex:none;background:#2A211B;color:#FCFAF7;font-size:16px;font-weight:500;box-shadow:0 8px 24px rgba(42,33,27,0.25)">
+            <span>Agendar horário</span>
+            <span
+              style="width:44px;height:44px;border-radius:50%;background:#C86D51;color:#FCFAF7;display:flex;align-items:center;justify-content:center;font-size:18px">→</span>
+          </a>
+        </div>
+      </sc-if>
+
+    </div>
+  </x-dc>
+  <script type="text/x-dc" data-dc-script
+    data-props="{&quot;reviewLink&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Google&quot;},&quot;googlePlaceId&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Google&quot;},&quot;heroVideo&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;heroScrim&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:0.6,&quot;step&quot;:0.05,&quot;default&quot;:0.45,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;showPrices&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;timeMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;horario&quot;,&quot;periodo&quot;],&quot;default&quot;:&quot;horario&quot;,&quot;tsType&quot;:&quot;'horario'|'periodo'&quot;},&quot;reveal&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { service: 'corte', day: null, time: null, name: '', openFaq: 0, w: typeof window !== 'undefined' ? window.innerWidth : 1280 };
+  componentDidMount() {
+    this.onResize = () => this.setState({ w: window.innerWidth });
+    this.onScroll = () => this.updateFill();
+    window.addEventListener('resize', this.onResize);
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.setupReveal(); this.updateFill();
+    const bk = document.getElementById('agendar');
+    if (bk) { this.bio = new IntersectionObserver(([e]) => { if (e.isIntersecting !== this.state.inBooking) this.setState({ inBooking: e.isIntersecting }); }, { threshold: 0.05 }); this.bio.observe(bk); }
+  }
+  componentDidUpdate() { this.setupReveal(); this.updateFill(); }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); window.removeEventListener('scroll', this.onScroll); this.io && this.io.disconnect(); this.bio && this.bio.disconnect(); }
+  updateFill() {
+    const vh = window.innerHeight;
+    document.querySelectorAll('[data-fill]').forEach(el => {
+      const r = el.getBoundingClientRect();
+      const p = Math.max(0, Math.min(1, (vh * 0.9 - r.top) / (vh * 0.45)));
+      const pc = (p * 100).toFixed(1);
+      el.style.backgroundImage = 'linear-gradient(90deg,#2A211B 0%,#2A211B ' + pc + '%,#DDD3C7 ' + pc + '%)';
+    });
+  }
+  setupReveal() {
+    if (this.props.reveal === false) return;
+    if (!this.io) this.io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; this.io.unobserve(e.target); }
+    }), { threshold: 0.12 });
+    document.querySelectorAll('[data-reveal]:not([data-rv])').forEach(el => {
+      el.setAttribute('data-rv', '1');
+      el.style.opacity = '0'; el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 800ms ease, transform 800ms cubic-bezier(.2,.7,.2,1)';
+      this.io.observe(el);
+    });
+  }
+  scrollToBooking() {
+    const el = document.getElementById('agendar');
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 12, behavior: 'smooth' });
+  }
+  chip(sel) { return sel ? { bg: '#2A211B', color: '#FCFAF7', border: '#2A211B' } : { bg: '#FCFAF7', color: '#2A211B', border: '#E0D6CA' }; }
+  renderVals() {
+    const { service, day, time, name, openFaq, w } = this.state;
+    const showPrices = this.props.showPrices ?? true;
+    const timeMode = this.props.timeMode ?? 'horario';
+    const heroVideo = (this.props.heroVideo ?? '').trim();
+    const desktop = w >= 1024, mobile = w < 640;
+    const svc = [
+      { id: 'corte', name: 'Corte', price: 'R$ 60', duration: '45 min', img: 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1200&q=80', ph: 'Foto do corte (4:5)', desc: 'Tesoura e máquina, lavagem e finalização com pomada ou óleo.' },
+      { id: 'barba', name: 'Barba', price: 'R$ 50', duration: '30 min', img: 'https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=1200&q=80', ph: 'Barba na navalha (4:5)', desc: 'Toalha quente, navalha e balm, com o desenho respeitando o seu rosto.' },
+      { id: 'combo', name: 'Corte e barba', price: 'R$ 100', duration: '1h15', img: 'https://images.unsplash.com/photo-1593702275687-f8b402bf1fb5?auto=format&fit=crop&w=1200&q=80', ph: 'Corte e barba (4:5)', desc: 'Os dois serviços na mesma cadeira, com o ritual completo de toalha quente.' },
+      { id: 'acabamento', name: 'Acabamento', price: 'R$ 25', duration: '15 min', img: 'https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?auto=format&fit=crop&w=1200&q=80', ph: 'Pezinho e contorno (4:5)', desc: 'Contorno e pezinho para manter o corte entre uma visita e outra.' }
+    ];
+    const services = svc.map((s, i) => {
+      const c = this.chip(s.id === service); const rev = desktop && i % 2 === 1;
+      const pid = (s.img.match(/photo-[0-9]+-([0-9a-f]+)/) || [])[1] || '';
+      return { ...s, credit: 'Foto via Unsplash', creditHref: 'https://unsplash.com', slot: 'v2-svc-' + s.id, chipBg: c.bg, chipColor: c.color, chipBorder: c.border,
+        dir: rev ? 'row-reverse' : 'row', imgJustify: desktop ? (rev ? 'flex-start' : 'flex-end') : 'flex-start',
+        align: rev ? 'flex-end' : 'flex-start', textAlign: rev ? 'right' : 'left',
+        onPick: () => this.setState({ service: s.id }),
+        onBook: () => { this.setState({ service: s.id }); this.scrollToBooking(); } };
+    });
+    const wdN = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+    const wdL = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
+    const days = []; const base = new Date(); base.setHours(0, 0, 0, 0);
+    for (let i = 0; days.length < 10 && i < 30; i++) {
+      const d = new Date(base); d.setDate(base.getDate() + i);
+      if (d.getDay() < 2) continue;
+      const key = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
+      const dm = String(d.getDate()).padStart(2, '0') + '/' + String(d.getMonth() + 1).padStart(2, '0');
+      const c = this.chip(key === day);
+      days.push({ key, wd: i === 0 ? 'Hoje' : wdN[d.getDay()], dm, long: wdL[d.getDay()] + ', ' + dm, bg: c.bg, color: c.color, border: c.border,
+        onPick: () => this.setState({ day: key === day ? null : key }) });
+    }
+    const tl = timeMode === 'periodo' ? ['Manhã', 'Tarde', 'Fim de tarde'] : ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
+    const times = tl.map(label => { const c = this.chip(label === time); return { label, bg: c.bg, color: c.color, border: c.border, onPick: () => this.setState({ time: label === time ? null : label }) }; });
+    const sObj = svc.find(s => s.id === service);
+    const dObj = days.find(d => d.key === day);
+    const tVal = tl.includes(time) ? time : null;
+    const summary = [
+      { k: 'Serviço', v: sObj.name + (showPrices ? ' · ' + sObj.price : '') },
+      { k: 'Dia', v: dObj ? dObj.long : 'Sem preferência' },
+      { k: 'Horário', v: tVal || 'Sem preferência' },
+      { k: 'Nome', v: name.trim() || '—' }
+    ];
+    const msg = 'Olá! Gostaria de agendar na Barbearia Quintana.\n\nServiço: ' + sObj.name + '\nDia: ' + (dObj ? dObj.long : 'sem preferência') + '\nHorário: ' + (tVal || 'sem preferência') + (name.trim() ? '\nNome: ' + name.trim() : '');
+    const faqData = [
+      ['Quanto custa um corte de cabelo na Barbearia Quintana?', 'O corte custa R$ 60. Os valores de barba, corte e barba e acabamento estão na seção de serviços.'],
+      ['Como agendar um horário?', 'Pelo WhatsApp (19) 99152-2327. Aqui no site você escolhe serviço, dia e horário de preferência e a mensagem já vai pronta.'],
+      ['Qual o horário de funcionamento?', 'De terça a sábado, das 8h às 19h. Domingo e segunda a barbearia fica fechada.'],
+      ['Onde fica a barbearia em Campinas?', 'Av. Nossa Senhora da Consolação, 821, Jardim Aurélia, Campinas - SP, CEP 13033-140.'],
+      ['Quanto tempo dura o atendimento?', 'O corte leva cerca de 45 minutos. Corte e barba, cerca de 1h15.'],
+      ['Preciso agendar ou posso ir direto?', 'O atendimento é com hora marcada, para que você não espere. Se houver horário livre, encaixamos.']
+    ];
+    const faqs = faqData.map(([q, a], i) => ({ q, a, open: i === openFaq, icon: i === openFaq ? '−' : '+', toggle: () => this.setState({ openFaq: i === openFaq ? -1 : i }) }));
+    return {
+      showPillars: !mobile, headerCta: mobile ? 'Agendar' : 'Agendar horário', desktop, mobileBar: mobile && !this.state.inBooking, scrimDir: mobile ? '0deg' : '90deg', footerPad: mobile ? '96px' : '40px',
+      reviewLink: (this.props.reviewLink || '').trim() || ((typeof navigator !== 'undefined' && !/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)) ? 'https://www.google.com/maps/place/Barbearia+Quintana/@-22.9044946,-47.0974367,17z/data=!4m8!3m7!1s0x94c8c9daad8bbf09:0x13e8df096986f84b!8m2!3d-22.9044946!4d-47.0974367!9m1!1b1!16s%2Fg%2F11gmvyv6zf' : null) || ((this.props.googlePlaceId ?? 'ChIJCb-LrdrJyJQRS_iGaQnf6BM').trim() ? 'https://search.google.com/local/writereview?placeid=' + (this.props.googlePlaceId ?? 'ChIJCb-LrdrJyJQRS_iGaQnf6BM').trim() : 'https://www.google.com/maps/search/?api=1&query=Barbearia+Quintana+Campinas'), hasVideo: !!heroVideo, heroVideoEl: heroVideo ? React.createElement('video', { key: heroVideo, src: heroVideo, autoPlay: true, muted: true, loop: true, playsInline: true, style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' } }) : null, noVideo: !heroVideo, heroVideo, scrim: String(this.props.heroScrim ?? 0.45),
+      services, days, times, summary, showPrices, name, onName: e => this.setState({ name: e.target.value }), faqs,
+      waLink: 'https://wa.me/5519991522327?text=' + encodeURIComponent(msg),
+      pillars: [
+        { t: 'Navalha e toalha quente', d: 'As técnicas que vieram do avô, em cada barba.' },
+        { t: 'Hora marcada', d: 'Você chega e é atendido, sem fila.' },
+        { t: 'Ar-condicionado e café', d: 'E música boa enquanto você está na cadeira.' }
+      ],
+      reviews: [
+        { name: 'Gabriel Moura', text: 'Ambiente muito agradável, com ar condicionado, café e música boa.' },
+        { name: 'Gabriel Martins', text: 'O dono é muito profissional, ambiente limpo e materiais de qualidade.' },
+        { name: 'Marcos Rogério C. Monteiro', text: 'Ótimo atendimento, espaço agradável, excelente trabalho.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+
+</html>
