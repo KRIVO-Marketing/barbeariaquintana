@@ -31,7 +31,7 @@ type Props = {
 export function ArrowPill({ tone, size = "md", icon = "→", children, className, ...rest }: Props) {
   const s = SIZE[size];
   const cls = cn(
-    "flex flex-none items-center whitespace-nowrap rounded-full font-medium transition-colors",
+    "flex flex-none items-center whitespace-nowrap rounded-full font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-45 disabled:hover:bg-ink",
     s.box,
     s.text,
     TONE[tone],

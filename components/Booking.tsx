@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ArrowPill } from "./ArrowPill";
+import { ConfirmDialog } from "./ConfirmDialog";
 import { useBooking } from "./BookingProvider";
 import { SectionTitle } from "./SectionTitle";
 import { PHONE_LABEL, SERVICES, TIMES, WHATSAPP } from "@/lib/data";
@@ -31,6 +32,7 @@ export function Booking() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState<string | null>(null);
   const [name, setName] = useState("");
+  const [confirming, setConfirming] = useState(false);
 
   // Limites dependem do relógio do visitante: calculados só no cliente.
   useEffect(() => {
@@ -48,11 +50,12 @@ export function Booking() {
       ? { long: `${WD_LONG[picked.getDay()]}, ${pad(picked.getDate())}/${pad(picked.getMonth() + 1)}` }
       : null;
   const trimmed = name.trim();
+  const canSend = !!dObj && !!time;
 
   const summary = [
     ["Serviço", `${svc.name} · ${svc.price}`],
-    ["Dia", dObj ? dObj.long : "Sem preferência"],
-    ["Horário", time ?? "Sem preferência"],
+    ["Dia", dObj ? dObj.long : "Escolha o dia"],
+    ["Horário", time ?? "Escolha o horário"],
     ["Nome", trimmed || "—"],
   ];
   const msg =
@@ -166,16 +169,31 @@ export function Booking() {
             <ArrowPill
               tone="dark"
               size="lg"
-              href={waLink}
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={() => canSend && setConfirming(true)}
+              disabled={!canSend}
+              aria-haspopup="dialog"
               className="justify-between"
             >
               Enviar no WhatsApp
             </ArrowPill>
-            <span className="text-[13px] leading-[1.5] text-muted">O horário é confirmado pelo João na conversa.</span>
+            <span
+              role={canSend ? undefined : "status"}
+              className={cn("text-[13px] leading-[1.5]", canSend ? "text-muted" : "text-terra-dark")}
+            >
+              {canSend
+                ? "O horário é confirmado pelo João na conversa."
+                : closed
+                  ? "Escolha um dia de terça a sábado e um horário para enviar."
+                  : "Escolha o dia e o horário para poder enviar."}
+            </span>
           </aside>
         </div>
+        <ConfirmDialog
+          open={confirming && canSend}
+          onClose={() => setConfirming(false)}
+          href={waLink}
+          details={[svc.name, dObj?.long, time].filter(Boolean).join(" · ")}
+        />
       </div>
     </section>
   );

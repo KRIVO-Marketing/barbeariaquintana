@@ -4,7 +4,7 @@ export const PHONE_TEL = "+5519991522327";
 export const INSTAGRAM_URL = "https://www.instagram.com/barbearia_quintana/";
 export const GOOGLE_PLACE_ID = "ChIJCb-LrdrJyJQRS_iGaQnf6BM";
 export const GOOGLE_PLACE_URL = `https://www.google.com/maps/place/?q=place_id:${GOOGLE_PLACE_ID}`;
-export const GOOGLE_REVIEW_URL = `https://search.google.com/local/writereview?placeid=${GOOGLE_PLACE_ID}`;
+export const GOOGLE_REVIEW_URL = "https://g.page/r/CUv4hmkJ3-gTEBM/review";
 export const MAPS_DIRECTIONS_URL =
   "https://www.google.com/maps/dir/?api=1&destination=Barbearia+Quintana+Av.+Nossa+Senhora+da+Consola%C3%A7%C3%A3o+821+Campinas";
 export const MAPS_EMBED_URL =
