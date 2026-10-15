@@ -17,15 +17,13 @@ export function History() {
         <Reveal className="grid grid-cols-2 gap-3">
           <figure className="m-0 flex flex-col gap-2.5">
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
-              <Photo src={IMAGES.avo} alt="Retrato do avô na parede da barbearia" sizes="(min-width:1200px) 290px, (min-width:940px) 25vw, 45vw" />
+              <Photo src={IMAGES.avo} alt="Detalhe de uma barbearia clássica" sizes="(min-width:1200px) 290px, (min-width:940px) 25vw, 45vw" />
             </div>
-            <figcaption className="text-[13px] text-muted">O avô, na parede da barbearia</figcaption>
           </figure>
           <figure className="m-0 mt-12 flex flex-col gap-2.5">
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
-              <Photo src={IMAGES.antes} alt="A sala antes da reforma" sizes="(min-width:1200px) 290px, (min-width:940px) 25vw, 45vw" />
+              <Photo src={IMAGES.antes} alt="Interior de barbearia" sizes="(min-width:1200px) 290px, (min-width:940px) 25vw, 45vw" />
             </div>
-            <figcaption className="text-[13px] text-muted">A sala, antes da reforma</figcaption>
           </figure>
         </Reveal>
         <div className="flex flex-col gap-10">

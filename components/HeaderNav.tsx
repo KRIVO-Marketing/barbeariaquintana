@@ -8,6 +8,7 @@ import { cn } from "@/lib/cn";
 const NAV = [
   ["#historia", "História"],
   ["#servicos", "Serviços"],
+  ["#clube", "Clube"],
   ["#avaliacoes", "Avaliações"],
   ["#faq", "Dúvidas"],
 ];
@@ -40,7 +41,7 @@ export function HeaderNav() {
         </a>
 
         <nav aria-label="Principal" className="pointer-events-auto hidden gap-9 text-[15px] lg:flex">
-          {NAV.slice(0, 3).map(([href, label]) => (
+          {NAV.slice(0, 4).map(([href, label]) => (
             <a key={href} href={href} className="text-cream transition-opacity hover:text-cream hover:opacity-70">
               {label}
             </a>

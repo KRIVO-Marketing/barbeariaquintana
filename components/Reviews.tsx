@@ -2,7 +2,7 @@ import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 import { ArrowPill } from "./ArrowPill";
 import { Star, Stars } from "./Stars";
-import { GOOGLE_PLACE_URL, GOOGLE_REVIEW_URL, REVIEWS } from "@/lib/data";
+import { GOOGLE_PLACE_URL, GOOGLE_REVIEW_URL, RATING, REVIEWS } from "@/lib/data";
 
 export function Reviews() {
   return (
@@ -10,10 +10,10 @@ export function Reviews() {
       <div className="flex flex-wrap items-end justify-between gap-7">
         <Reveal className="flex flex-col gap-5">
           <div className="flex items-center gap-3.5">
-            <Stars size={26} gap="gap-1" label="Nota 4,9 de 5" />
-            <span className="text-[15px] font-medium text-ink">4,9</span>
+            <Stars size={26} gap="gap-1" label={`Nota ${RATING.value} de 5`} />
+            <span className="text-[15px] font-medium text-ink">{RATING.value}</span>
           </div>
-          <SectionTitle lead="Nota 4,9 no Google." dim="Em 44 avaliações." className="max-w-[14em]" />
+          <SectionTitle lead={`Nota ${RATING.value} no Google.`} dim={`Em ${RATING.count} avaliações.`} className="max-w-[14em]" />
         </Reveal>
         <div className="flex w-full flex-col gap-2.5 sm:w-auto sm:flex-row sm:flex-wrap">
           <a

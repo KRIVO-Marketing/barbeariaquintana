@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { OpenCookieSettings } from "./OpenCookieSettings";
 
 export function Footer() {
   return (
@@ -7,9 +9,31 @@ export function Footer() {
         <Image src="/logo-q.png" alt="" width={32} height={32} className="size-8 rounded-full" />
         <span>© 2026 Barbearia Quintana · Campinas, SP</span>
       </div>
-      <a href="#topo" className="text-ink transition-colors hover:text-terra-dark">
-        Voltar ao topo ↑
-      </a>
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+        <Link href="/politica-de-privacidade" className="hover:text-ink">
+          Privacidade
+        </Link>
+        <Link href="/politica-de-cookies" className="hover:text-ink">
+          Cookies
+        </Link>
+        <OpenCookieSettings className="cursor-pointer p-0 text-sm text-muted hover:text-ink">
+          Preferências de cookies
+        </OpenCookieSettings>
+        <span>
+          Desenvolvido por{" "}
+          <a
+            href="https://www.krivomkt.com.br/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-ink transition-colors hover:text-terra-dark"
+          >
+            Krivo
+          </a>
+        </span>
+        <a href="#topo" className="text-ink transition-colors hover:text-terra-dark">
+          Voltar ao topo ↑
+        </a>
+      </div>
     </footer>
   );
 }

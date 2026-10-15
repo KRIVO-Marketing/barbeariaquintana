@@ -26,6 +26,9 @@ export function Hero() {
         <HeaderNav />
 
         <div className="pointer-events-none relative mt-auto flex max-w-[900px] flex-col gap-5 px-[clamp(16px,3vw,40px)] pb-[clamp(24px,4vw,48px)] sm:gap-[clamp(20px,2.4vw,28px)]">
+          <p className="m-0 text-[13px] font-medium uppercase tracking-[0.18em] text-cream [text-shadow:0_1px_12px_rgba(42,33,27,0.5)]">
+            Barbearia em Campinas · Jardim Aurélia
+          </p>
           <h1 className="m-0 text-balance font-caslon text-[clamp(44px,7.6vw,120px)] font-normal leading-none tracking-[-0.015em] text-cream [text-shadow:0_1px_16px_rgba(42,33,27,0.35)]">
             Seu corte, na hora marcada.
           </h1>

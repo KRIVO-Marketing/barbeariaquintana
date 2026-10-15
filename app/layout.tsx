@@ -1,10 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import { Libre_Caslon_Display, Plus_Jakarta_Sans, Rye } from "next/font/google";
+import { Analytics } from "@/components/Analytics";
+import { ConsentProvider } from "@/components/ConsentProvider";
+import { CookieBanner } from "@/components/CookieBanner";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500"],
   variable: "--f-jakarta",
   display: "swap",
 });
@@ -16,18 +20,24 @@ const caslon = Libre_Caslon_Display({
   display: "swap",
 });
 
+const TITLE = "Barbearia em Campinas | Corte e Barba no Jardim Aurélia · Quintana";
 const DESCRIPTION =
-  "Barbearia Quintana, desde 2016 no Jardim Aurélia, Campinas. Corte, barba e acabamento com hora marcada. Agende pelo WhatsApp (19) 99152-2327.";
+  "Barbearia Quintana, desde 2016 no Jardim Aurélia, Campinas. Corte, barba, acabamento e Clube Quintana, com hora marcada. Agende pelo WhatsApp (19) 99152-2327.";
 
 export const metadata: Metadata = {
-  title: "Barbearia Quintana · Barbearia no Jardim Aurélia, Campinas",
+  metadataBase: new URL(SITE_URL),
+  title: TITLE,
   description: DESCRIPTION,
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Barbearia Quintana · Barbearia no Jardim Aurélia, Campinas",
+    title: TITLE,
     description: DESCRIPTION,
+    url: "/",
+    siteName: "Barbearia Quintana",
     locale: "pt_BR",
     type: "website",
   },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
 export const viewport: Viewport = {
@@ -44,7 +54,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <noscript>
           <style>{`[data-reveal]{opacity:1!important;transform:none!important}[data-fill]{--p:100%!important}`}</style>
         </noscript>
-        {children}
+        <ConsentProvider>
+          {children}
+          <CookieBanner />
+          <Analytics />
+        </ConsentProvider>
       </body>
     </html>
   );

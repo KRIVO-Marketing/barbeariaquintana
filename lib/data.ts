@@ -1,6 +1,9 @@
+import { SITE_URL } from "./site";
+
 export const WHATSAPP = "5519991522327";
 export const PHONE_LABEL = "(19) 99152-2327";
 export const PHONE_TEL = "+5519991522327";
+export const FACEBOOK_URL = "https://www.facebook.com/barbeariaquintana";
 export const INSTAGRAM_URL = "https://www.instagram.com/barbearia_quintana/";
 export const GOOGLE_PLACE_ID = "ChIJCb-LrdrJyJQRS_iGaQnf6BM";
 export const GOOGLE_PLACE_URL = `https://www.google.com/maps/place/?q=place_id:${GOOGLE_PLACE_ID}`;
@@ -9,6 +12,13 @@ export const MAPS_DIRECTIONS_URL =
   "https://www.google.com/maps/dir/?api=1&destination=Barbearia+Quintana+Av.+Nossa+Senhora+da+Consola%C3%A7%C3%A3o+821+Campinas";
 export const MAPS_EMBED_URL =
   "https://www.google.com/maps?q=Av.+Nossa+Senhora+da+Consola%C3%A7%C3%A3o,+821,+Campinas+-+SP&output=embed";
+
+/** Nota do Google (atualize junto com o perfil). */
+export const RATING = { value: "4,9", ratingValue: "4.9", count: 44 };
+
+/** IDs de rastreamento (definidos em .env.local). Vazios = nenhum script é carregado. */
+export const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "";
+export const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "";
 
 /** Vídeo opcional do hero (loop horizontal). Vazio = usa a foto. */
 export const HERO_VIDEO = "";
@@ -29,51 +39,69 @@ export const IMAGES = {
 export type Service = {
   id: string;
   name: string;
-  price: string;
-  duration: string;
-  img: string;
-  alt: string;
+  note?: string;
+  price: number;
   desc: string;
 };
 
 export const SERVICES: Service[] = [
-  {
-    id: "corte",
-    name: "Corte",
-    price: "R$ 60",
-    duration: "45 min",
-    img: u("1621605815971-fbc98d665033"),
-    alt: "Corte de cabelo sendo finalizado com máquina",
-    desc: "Tesoura e máquina, lavagem e finalização com pomada ou óleo.",
-  },
-  {
-    id: "barba",
-    name: "Barba",
-    price: "R$ 50",
-    duration: "30 min",
-    img: u("1605497788044-5a32c7078486"),
-    alt: "Barba sendo feita na navalha",
-    desc: "Toalha quente, navalha e balm, com o desenho respeitando o seu rosto.",
-  },
-  {
-    id: "combo",
-    name: "Corte e barba",
-    price: "R$ 100",
-    duration: "1h15",
-    img: u("1593702275687-f8b402bf1fb5"),
-    alt: "Cliente com corte e barba feitos",
-    desc: "Os dois serviços na mesma cadeira, com o ritual completo de toalha quente.",
-  },
-  {
-    id: "acabamento",
-    name: "Acabamento",
-    price: "R$ 25",
-    duration: "15 min",
-    img: u("1634449571010-02389ed0f9b0"),
-    alt: "Contorno e pezinho sendo alinhados",
-    desc: "Contorno e pezinho para manter o corte entre uma visita e outra.",
-  },
+  { id: "corte", name: "Corte de cabelo", price: 60, desc: "Seu corte, do seu jeito." },
+  { id: "corte-maquina", name: "Corte de cabelo", note: "máquina nº 0", price: 50, desc: "Rápido e na régua." },
+  { id: "barba", name: "Barba", price: 60, desc: "Navalha e toalha quente." },
+  { id: "combo", name: "Cabelo e barba", price: 115, desc: "O visual completo, numa só visita." },
+  { id: "acabamento", name: "Acabamento", price: 30, desc: "O corte sempre em dia." },
+  { id: "acabamento-barba", name: "Acabamento de barba", price: 30, desc: "Contorno limpo e alinhado." },
+  { id: "sobrancelha", name: "Sobrancelha", price: 20, desc: "Olhar mais marcado." },
+  { id: "epilacao-nasal", name: "Epilação nasal", price: 20, desc: "Detalhe que faz diferença." },
+  { id: "epilacao-auricular", name: "Epilação auricular", price: 20, desc: "Capricho até nos detalhes." },
+  { id: "progressiva", name: "Progressiva", note: "franja", price: 100, desc: "Controle da franja." },
 ];
+
+export const FEATURED_IDS = ["corte", "barba", "combo"];
+export const EXTRA_GROUPS: { title: string; ids: string[] }[] = [
+  { title: "Acabamentos", ids: ["acabamento", "acabamento-barba"] },
+  { title: "Detalhes", ids: ["sobrancelha", "epilacao-nasal", "epilacao-auricular"] },
+  { title: "Transformação", ids: ["progressiva"] },
+];
+
+export const brl = (n: number) => `R$ ${n}`;
+
+/** Nome para mensagens e resumos, ex.: "Corte de cabelo (máquina nº 0)". */
+export const serviceLabel = (s: Service) => (s.note ? `${s.name} (${s.note})` : s.name);
+
+export type Plan = {
+  id: string;
+  name: string;
+  items: string;
+  price: number;
+  validity: string;
+  perk: boolean;
+};
+
+export const CLUB_PLANS: Plan[] = [
+  { id: "essential", name: "Quintana Essential", items: "2 cortes", price: 110, validity: "20 dias", perk: false },
+  { id: "reserva", name: "Quintana Reserva", items: "3 cortes", price: 150, validity: "30 dias", perk: false },
+  { id: "classico", name: "Quintana Clássico", items: "4 cortes", price: 190, validity: "30 dias", perk: true },
+  { id: "barba", name: "Quintana Barba", items: "4 barbas", price: 190, validity: "30 dias", perk: true },
+  { id: "duo", name: "Quintana Duo", items: "2 cortes + 2 barbas", price: 190, validity: "30 dias", perk: true },
+  { id: "signature", name: "Quintana Signature", items: "4 cortes + 4 barbas", price: 360, validity: "30 dias", perk: true },
+];
+
+export const CLUB_RULES = [
+  { t: "Pagamento antecipado", d: "Você paga o pacote antes e tem mais economia nos serviços." },
+  { t: "Ausência na semana", d: "O serviço é considerado realizado no pacote mensal, sem direito à reposição ou reembolso." },
+  { t: "Uso individual", d: "Todos os pacotes são de uso exclusivo de uma pessoa. Não é permitido transferir ou compartilhar." },
+];
+
+const price = (id: string) => brl(SERVICES.find((x) => x.id === id)!.price);
+
+export const SUMMARY =
+  "A Barbearia Quintana é uma barbearia no Jardim Aurélia, em Campinas, aberta desde 2016 por João Navero Quintana. " +
+  "Fica na Av. Nossa Senhora da Consolação, 821, e atende de terça a sexta, das 8h às 19h, e aos sábados, das 8h às 17h, com hora marcada. " +
+  `O corte de cabelo custa ${price("corte")} (${price("corte-maquina")} na máquina nº 0), a barba ${price("barba")} e o combo de cabelo e barba ${price("combo")}. ` +
+  "Também há acabamento, sobrancelha, epilações, progressiva na franja e o Clube Quintana, com pacotes mensais a partir de " +
+  `${brl(Math.min(...CLUB_PLANS.map((p) => p.price)))}. ` +
+  `Para agendar, escolha o serviço, o dia e o horário aqui no site e envie a mensagem pelo WhatsApp ${PHONE_LABEL}.`;
 
 export const PILLARS = [
   { t: "Navalha e toalha quente", d: "As técnicas que vieram do avô, em cada barba." },
@@ -90,7 +118,11 @@ export const REVIEWS = [
 export const FAQS: [string, string][] = [
   [
     "Quanto custa um corte de cabelo na Barbearia Quintana?",
-    "O corte custa R$ 60. Os valores de barba, corte e barba e acabamento estão na seção de serviços.",
+    "O corte de cabelo custa R$ 60 (R$ 50 na máquina nº 0). Barba, cabelo e barba, acabamento, sobrancelha e os demais valores estão na seção de serviços.",
+  ],
+  [
+    "Quais serviços a Barbearia Quintana oferece e quanto custam?",
+    SERVICES.map((x) => `${serviceLabel(x)} ${brl(x.price)}`).join("; ") + ". Há ainda o Clube Quintana, com pacotes mensais de cortes e barbas.",
   ],
   [
     "Como agendar um horário?",
@@ -98,15 +130,23 @@ export const FAQS: [string, string][] = [
   ],
   [
     "Qual o horário de funcionamento?",
-    "De terça a sábado, das 8h às 19h. Domingo e segunda a barbearia fica fechada.",
+    "De terça a sexta, das 8h às 19h, e aos sábados, das 8h às 17h. Domingo e segunda a barbearia fica fechada.",
+  ],
+  [
+    "Quais as formas de pagamento?",
+    "Aceitamos cartões de crédito e débito e pagamento por aproximação no celular (NFC). Não aceitamos apenas dinheiro.",
+  ],
+  [
+    "Tem estacionamento? Posso levar meu filho?",
+    "Há estacionamento gratuito na rua. A barbearia é boa para ir com crianças.",
   ],
   [
     "Onde fica a barbearia em Campinas?",
     "Av. Nossa Senhora da Consolação, 821, Jardim Aurélia, Campinas - SP, CEP 13033-140.",
   ],
   [
-    "Quanto tempo dura o atendimento?",
-    "O corte leva cerca de 45 minutos. Corte e barba, cerca de 1h15.",
+    "O que é o Clube Quintana?",
+    "São pacotes mensais de cortes e barbas com pagamento antecipado e mais economia, para quem faz da barbearia parte da rotina. Há seis opções, a partir de R$ 110. Veja todas na seção do clube.",
   ],
   [
     "Preciso agendar ou posso ir direto?",
@@ -114,21 +154,42 @@ export const FAQS: [string, string][] = [
   ],
 ];
 
-export const TIMES = [
+const ALL_TIMES = [
   "08:00", "09:00", "10:00", "11:00", "12:00", "13:00",
   "14:00", "15:00", "16:00", "17:00", "18:00",
 ];
+
+/** Horários oferecidos: terça a sexta até as 19h, sábado até as 17h. */
+export const timesFor = (weekday: number | null) =>
+  weekday === 6 ? ALL_TIMES.filter((t) => t < "17:00") : ALL_TIMES;
 
 export const JSON_LD = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "BarberShop",
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: `${SITE_URL}/`,
       name: "Barbearia Quintana",
-      foundingDate: "2016",
-      founder: "João Navero Quintana",
+      inLanguage: "pt-BR",
+      publisher: { "@id": `${SITE_URL}/#barbershop` },
+    },
+    {
+      "@type": "BarberShop",
+      "@id": `${SITE_URL}/#barbershop`,
+      name: "Barbearia Quintana",
+      url: `${SITE_URL}/`,
+      description:
+        "Barbearia no Jardim Aurélia, em Campinas, aberta em 2016. Corte, barba, acabamento e Clube Quintana, com hora marcada.",
+      image: `${SITE_URL}/opengraph-image`,
+      logo: `${SITE_URL}/icon.png`,
+      foundingDate: "2016-03-30",
+      founder: { "@type": "Person", name: "João Navero Quintana" },
       telephone: "+55 19 99152-2327",
-      priceRange: "R$ 60",
+      priceRange: "R$ 20 - R$ 360",
+      currenciesAccepted: "BRL",
+      hasMap: GOOGLE_PLACE_URL,
+      areaServed: { "@type": "City", name: "Campinas" },
       address: {
         "@type": "PostalAddress",
         streetAddress: "Av. Nossa Senhora da Consolação, 821",
@@ -137,14 +198,54 @@ export const JSON_LD = {
         postalCode: "13033-140",
         addressCountry: "BR",
       },
-      openingHoursSpecification: {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        opens: "08:00",
-        closes: "19:00",
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "08:00",
+          closes: "19:00",
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: "Saturday",
+          opens: "08:00",
+          closes: "17:00",
+        },
+      ],
+      paymentAccepted: "Cartão de crédito, cartão de débito, NFC",
+      amenityFeature: [
+        { "@type": "LocationFeatureSpecification", name: "Estacionamento gratuito na rua", value: true },
+        { "@type": "LocationFeatureSpecification", name: "Bom para ir com crianças", value: true },
+        { "@type": "LocationFeatureSpecification", name: "Banheiro", value: true },
+      ],
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: RATING.ratingValue,
+        reviewCount: String(RATING.count),
+        bestRating: "5",
       },
-      aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "44" },
-      sameAs: [INSTAGRAM_URL],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Serviços e Clube Quintana",
+        itemListElement: [
+          ...SERVICES.map((x) => ({
+            "@type": "Offer",
+            priceCurrency: "BRL",
+            price: String(x.price),
+            itemOffered: { "@type": "Service", name: serviceLabel(x) },
+          })),
+          ...CLUB_PLANS.map((x) => ({
+            "@type": "Offer",
+            priceCurrency: "BRL",
+            price: String(x.price),
+            itemOffered: {
+              "@type": "Service",
+              name: `${x.name} (${x.items}, validade ${x.validity})`,
+            },
+          })),
+        ],
+      },
+      sameAs: [INSTAGRAM_URL, FACEBOOK_URL, GOOGLE_PLACE_URL],
     },
     {
       "@type": "FAQPage",

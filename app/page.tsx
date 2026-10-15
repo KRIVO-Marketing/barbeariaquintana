@@ -1,5 +1,6 @@
 import { Booking } from "@/components/Booking";
 import { BookingProvider } from "@/components/BookingProvider";
+import { Club } from "@/components/Club";
 import { Faq } from "@/components/Faq";
 import { Footer } from "@/components/Footer";
 import { Gallery } from "@/components/Gallery";
@@ -8,6 +9,7 @@ import { History } from "@/components/History";
 import { Location } from "@/components/Location";
 import { Reviews } from "@/components/Reviews";
 import { Services } from "@/components/Services";
+import { Summary } from "@/components/Summary";
 import { JSON_LD } from "@/lib/data";
 
 export default function Home() {
@@ -19,8 +21,10 @@ export default function Home() {
       />
       <main className="min-h-svh overflow-x-clip bg-cream text-ink">
         <Hero />
+        <Summary />
         <History />
         <Services />
+        <Club />
         <Booking />
         <Reviews />
         <Gallery />

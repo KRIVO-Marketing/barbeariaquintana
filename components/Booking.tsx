@@ -6,7 +6,7 @@ import { ArrowPill } from "./ArrowPill";
 import { ConfirmDialog } from "./ConfirmDialog";
 import { useBooking } from "./BookingProvider";
 import { SectionTitle } from "./SectionTitle";
-import { PHONE_LABEL, SERVICES, TIMES, WHATSAPP } from "@/lib/data";
+import { PHONE_LABEL, SERVICES, WHATSAPP, brl, serviceLabel, timesFor } from "@/lib/data";
 import { cn } from "@/lib/cn";
 
 const WD_LONG = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"];
@@ -30,7 +30,7 @@ export function Booking() {
   const { service, setService } = useBooking();
   const [range, setRange] = useState<{ min: string; max: string } | null>(null);
   const [date, setDate] = useState("");
-  const [time, setTime] = useState<string | null>(null);
+  const [rawTime, setTime] = useState<string | null>(null);
   const [name, setName] = useState("");
   const [confirming, setConfirming] = useState(false);
 
@@ -45,22 +45,24 @@ export function Booking() {
   const svc = SERVICES.find((s) => s.id === service) ?? SERVICES[0];
   const picked = date ? parseIso(date) : null;
   const closed = !!picked && picked.getDay() < 2;
+  const times = timesFor(picked && !closed ? picked.getDay() : null);
   const dObj =
     picked && !closed
       ? { long: `${WD_LONG[picked.getDay()]}, ${pad(picked.getDate())}/${pad(picked.getMonth() + 1)}` }
       : null;
   const trimmed = name.trim();
+  const time = rawTime && times.includes(rawTime) ? rawTime : null;
   const canSend = !!dObj && !!time;
 
   const summary = [
-    ["Serviço", `${svc.name} · ${svc.price}`],
+    ["Serviço", `${serviceLabel(svc)} · ${brl(svc.price)}`],
     ["Dia", dObj ? dObj.long : "Escolha o dia"],
     ["Horário", time ?? "Escolha o horário"],
     ["Nome", trimmed || "—"],
   ];
   const msg =
     "Olá! Gostaria de agendar na Barbearia Quintana.\n\n" +
-    `Serviço: ${svc.name}\nDia: ${dObj ? dObj.long : "sem preferência"}\nHorário: ${time ?? "sem preferência"}` +
+    `Serviço: ${serviceLabel(svc)}\nDia: ${dObj ? dObj.long : "sem preferência"}\nHorário: ${time ?? "sem preferência"}` +
     (trimmed ? `\nNome: ${trimmed}` : "");
   const waLink = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
@@ -85,7 +87,7 @@ export function Booking() {
                       chip(s.id === service),
                     )}
                   >
-                    {s.name}
+                    {serviceLabel(s)}
                   </button>
                 ))}
               </div>
@@ -119,7 +121,7 @@ export function Booking() {
             <fieldset className="m-0 flex min-w-0 flex-col gap-3.5 border-0 p-0">
               <legend className={cn(LABEL, "mb-3.5 p-0")}>Horário de preferência</legend>
               <div className="grid grid-cols-[repeat(auto-fill,minmax(72px,1fr))] gap-2">
-                {TIMES.map((t) => (
+                {times.map((t) => (
                   <button
                     key={t}
                     type="button"
@@ -192,7 +194,7 @@ export function Booking() {
           open={confirming && canSend}
           onClose={() => setConfirming(false)}
           href={waLink}
-          details={[svc.name, dObj?.long, time].filter(Boolean).join(" · ")}
+          details={[serviceLabel(svc), dObj?.long, time].filter(Boolean).join(" · ")}
         />
       </div>
     </section>

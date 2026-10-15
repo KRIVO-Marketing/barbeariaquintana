@@ -2,10 +2,10 @@ import { Photo } from "./Photo";
 import { IMAGES } from "@/lib/data";
 
 const ITEMS = [
-  [IMAGES.g1, "Fachada da barbearia"],
+  [IMAGES.g1, "Barbeiro atendendo cliente"],
   [IMAGES.g2, "Cadeira de barbeiro"],
   [IMAGES.g3, "Navalha e toalha quente"],
-  [IMAGES.g4, "Ambiente interno da barbearia"],
+  [IMAGES.g4, "Poltrona de barbeiro"],
 ];
 
 export function Gallery() {
