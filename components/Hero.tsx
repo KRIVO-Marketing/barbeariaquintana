@@ -27,7 +27,7 @@ export function Hero() {
 
         <div className="pointer-events-none relative mt-auto flex max-w-[900px] flex-col gap-5 px-[clamp(16px,3vw,40px)] pb-[clamp(24px,4vw,48px)] sm:gap-[clamp(20px,2.4vw,28px)]">
           <h1 className="m-0 text-balance font-caslon text-[clamp(44px,7.6vw,120px)] font-normal leading-none tracking-[-0.015em] text-cream [text-shadow:0_1px_16px_rgba(42,33,27,0.35)]">
-            O ofício do avô, com hora marcada.
+            Seu corte, na hora marcada.
           </h1>
           <p className="m-0 max-w-[30em] text-[clamp(16px,1.3vw,19px)] leading-[1.55] text-cream [text-shadow:0_1px_12px_rgba(42,33,27,0.5)]">
             Barbearia Quintana. Corte e barba no Jardim Aurélia, em Campinas, desde 2016.
