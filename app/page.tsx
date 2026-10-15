@@ -1,3 +1,4 @@
+// Página inicial da Barbearia Quintana
 import { Booking } from "@/components/Booking";
 import { BookingProvider } from "@/components/BookingProvider";
 import { Club } from "@/components/Club";
