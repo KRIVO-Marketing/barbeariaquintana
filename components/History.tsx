@@ -31,6 +31,11 @@ export function History() {
             João Navero Quintana guardou do avô a navalha afiada, a toalha quente e a conversa sem pressa. Em
             2016 reformou uma sala vazia na Av. Nossa Senhora da Consolação e abriu a própria barbearia.
           </Reveal>
+          <Reveal as="p" className="m-0 max-w-[32em] text-pretty text-base leading-[1.65] text-soft">
+            Hoje a Barbearia Quintana atende no Jardim Aurélia, em Campinas, de terça a sexta, das 8h às 19h, e aos
+            sábados, das 8h às 17h, sempre com hora marcada. Corte de cabelo a partir de R$ 50, barba a R$ 60 e
+            pacotes mensais no Clube Quintana.
+          </Reveal>
           <div className="hidden grid-cols-[repeat(auto-fit,minmax(170px,1fr))] gap-7 sm:grid">
             {PILLARS.map((p) => (
               <Reveal key={p.t} className="flex flex-col gap-2.5 border-t border-line pt-5">

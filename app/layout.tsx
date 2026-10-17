@@ -12,7 +12,7 @@ const jakarta = Plus_Jakarta_Sans({
   variable: "--f-jakarta",
   display: "swap",
 });
-const rye = Rye({ subsets: ["latin"], weight: "400", variable: "--f-rye", display: "swap" });
+const rye = Rye({ subsets: ["latin"], weight: "400", variable: "--f-rye", display: "swap", preload: false });
 const caslon = Libre_Caslon_Display({
   subsets: ["latin"],
   weight: "400",

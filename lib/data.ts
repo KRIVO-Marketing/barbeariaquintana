@@ -93,16 +93,6 @@ export const CLUB_RULES = [
   { t: "Uso individual", d: "Todos os pacotes são de uso exclusivo de uma pessoa. Não é permitido transferir ou compartilhar." },
 ];
 
-const price = (id: string) => brl(SERVICES.find((x) => x.id === id)!.price);
-
-export const SUMMARY =
-  "A Barbearia Quintana é uma barbearia no Jardim Aurélia, em Campinas, aberta desde 2016 por João Navero Quintana. " +
-  "Fica na Av. Nossa Senhora da Consolação, 821, e atende de terça a sexta, das 8h às 19h, e aos sábados, das 8h às 17h, com hora marcada. " +
-  `O corte de cabelo custa ${price("corte")} (${price("corte-maquina")} na máquina nº 0), a barba ${price("barba")} e o combo de cabelo e barba ${price("combo")}. ` +
-  "Também há acabamento, sobrancelha, epilações, progressiva na franja e o Clube Quintana, com pacotes mensais a partir de " +
-  `${brl(Math.min(...CLUB_PLANS.map((p) => p.price)))}. ` +
-  `Para agendar, escolha o serviço, o dia e o horário aqui no site e envie a mensagem pelo WhatsApp ${PHONE_LABEL}.`;
-
 export const PILLARS = [
   { t: "Navalha e toalha quente", d: "As técnicas que vieram do avô, em cada barba." },
   { t: "Hora marcada", d: "Você chega e é atendido, sem fila." },
@@ -118,39 +108,41 @@ export const REVIEWS = [
 export const FAQS: [string, string][] = [
   [
     "Quanto custa um corte de cabelo na Barbearia Quintana?",
-    "O corte de cabelo custa R$ 60 (R$ 50 na máquina nº 0). Barba, cabelo e barba, acabamento, sobrancelha e os demais valores estão na seção de serviços.",
+    "Na Barbearia Quintana, em Campinas, o corte de cabelo custa R$ 60 (R$ 50 na máquina nº 0). A barba custa R$ 60 e o combo de cabelo e barba, R$ 115. Os demais valores estão na seção de serviços.",
   ],
   [
     "Quais serviços a Barbearia Quintana oferece e quanto custam?",
-    SERVICES.map((x) => `${serviceLabel(x)} ${brl(x.price)}`).join("; ") + ". Há ainda o Clube Quintana, com pacotes mensais de cortes e barbas.",
+    "A Barbearia Quintana oferece: " +
+      SERVICES.map((x) => `${serviceLabel(x)} ${brl(x.price)}`).join("; ") +
+      ". Há ainda o Clube Quintana, com pacotes mensais de cortes e barbas.",
   ],
   [
     "Como agendar um horário?",
-    "Pelo WhatsApp (19) 99152-2327. Aqui no site você escolhe serviço, dia e horário de preferência e a mensagem já vai pronta.",
+    "Para agendar na Barbearia Quintana, escolha o serviço, o dia e o horário aqui no site e envie a mensagem pronta pelo WhatsApp (19) 99152-2327. O atendimento é com hora marcada.",
   ],
   [
     "Qual o horário de funcionamento?",
-    "De terça a sexta, das 8h às 19h, e aos sábados, das 8h às 17h. Domingo e segunda a barbearia fica fechada.",
+    "A Barbearia Quintana abre de terça a sexta, das 8h às 19h, e aos sábados, das 8h às 17h. Fecha aos domingos e às segundas.",
   ],
   [
     "Quais as formas de pagamento?",
-    "Aceitamos cartões de crédito e débito e pagamento por aproximação no celular (NFC). Não aceitamos apenas dinheiro.",
+    "A Barbearia Quintana aceita cartões de crédito e débito e pagamento por aproximação no celular (NFC). Não aceita apenas dinheiro.",
   ],
   [
     "Tem estacionamento? Posso levar meu filho?",
-    "Há estacionamento gratuito na rua. A barbearia é boa para ir com crianças.",
+    "Sim, há estacionamento gratuito na rua em frente à Barbearia Quintana. O ambiente é bom para ir com crianças.",
   ],
   [
     "Onde fica a barbearia em Campinas?",
-    "Av. Nossa Senhora da Consolação, 821, Jardim Aurélia, Campinas - SP, CEP 13033-140.",
+    "A Barbearia Quintana fica na Av. Nossa Senhora da Consolação, 821, Jardim Aurélia, Campinas - SP, CEP 13033-140.",
   ],
   [
     "O que é o Clube Quintana?",
-    "São pacotes mensais de cortes e barbas com pagamento antecipado e mais economia, para quem faz da barbearia parte da rotina. Há seis opções, a partir de R$ 110. Veja todas na seção do clube.",
+    "O Clube Quintana é o plano de pacotes mensais de cortes e barbas da Barbearia Quintana, com pagamento antecipado e mais economia. Há seis opções, a partir de R$ 110. Veja todas na seção do clube.",
   ],
   [
     "Preciso agendar ou posso ir direto?",
-    "O atendimento é com hora marcada, para que você não espere. Se houver horário livre, encaixamos.",
+    "O atendimento na Barbearia Quintana é com hora marcada, para que você não espere. Se houver horário livre, encaixamos.",
   ],
 ];
 
@@ -189,6 +181,7 @@ export const JSON_LD = {
       priceRange: "R$ 20 - R$ 360",
       currenciesAccepted: "BRL",
       hasMap: GOOGLE_PLACE_URL,
+      geo: { "@type": "GeoCoordinates", latitude: -22.904257, longitude: -47.097501 },
       areaServed: { "@type": "City", name: "Campinas" },
       address: {
         "@type": "PostalAddress",

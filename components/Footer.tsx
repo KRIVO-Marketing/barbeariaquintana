@@ -9,6 +9,12 @@ export function Footer() {
         <Image src="/logo-q.png" alt="" width={32} height={32} className="size-8 rounded-full" />
         <span>© 2026 Barbearia Quintana · Campinas, SP</span>
       </div>
+      <address className="basis-full not-italic leading-[1.6]">
+        Av. Nossa Senhora da Consolação, 821, Jardim Aurélia, Campinas - SP · Ter a sex, 8h às 19h · Sáb, 8h às 17h ·{" "}
+        <a href="tel:+5519991522327" className="text-inherit hover:text-ink">
+          (19) 99152-2327
+        </a>
+      </address>
       <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
         <Link href="/politica-de-privacidade" className="hover:text-ink">
           Privacidade
