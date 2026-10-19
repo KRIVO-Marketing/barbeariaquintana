@@ -23,8 +23,27 @@ export function Location() {
               <span aria-hidden="true">↗</span>
             </a>
             <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className={`${ROW} border-b`}>
-              <span>@barbearia_quintana</span>
-              <span aria-hidden="true">↗</span>
+              <span className="flex items-center gap-3">
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  className="size-6 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" />
+                </svg>
+                <span>@barbearia_quintana</span>
+              </span>
+              <span className="flex items-center gap-2 text-terra-light">
+                <span className="text-sm">Abrir Instagram</span>
+                <span aria-hidden="true">↗</span>
+              </span>
             </a>
           </div>
           <ArrowPill tone="light" href="#agendar" className="self-start">
