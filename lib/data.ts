@@ -133,10 +133,6 @@ export const FAQS: [string, string][] = [
     "A Barbearia Quintana aceita cartões de crédito e débito e pagamento por aproximação no celular (NFC).",
   ],
   [
-    "Tem estacionamento? Posso levar meu filho?",
-    "Sim. Há estacionamento gratuito na rua, perto da Barbearia Quintana, no Jardim Aurélia, em Campinas. O espaço é bom para ir com crianças, e o atendimento é com hora marcada.",
-  ],
-  [
     "Qual a história da Barbearia Quintana?",
     "A Barbearia Quintana nasceu de avô para neto. O avô de João Navero Quintana foi barbeiro no Jardim Aurélia por muitos anos. João fez o curso de barbeiro aos 13 anos e, aos 16, em 2016, abriu a própria barbearia em Campinas. A cadeira, as tesouras e outros itens antigos do avô ficam expostos no espaço.",
   ],
