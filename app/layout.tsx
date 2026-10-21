@@ -22,13 +22,18 @@ const caslon = Libre_Caslon_Display({
 
 const TITLE = "Barbearia em Campinas | Corte e Barba no Jardim Aurélia · Quintana";
 const DESCRIPTION =
-  "Barbearia Quintana, desde 2016 no Jardim Aurélia, Campinas. Corte, barba, acabamento e Clube Quintana, com hora marcada. Agende pelo WhatsApp (19) 99152-2327.";
+  "Barbearia no Jardim Aurélia, em Campinas: corte, barba e Clube Quintana com hora marcada. Tradição de avô para neto desde 2016. Agende pelo WhatsApp.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-snippet": -1, "max-image-preview": "large", "max-video-preview": -1 },
+  },
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,

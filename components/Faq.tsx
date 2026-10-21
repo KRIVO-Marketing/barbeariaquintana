@@ -12,7 +12,7 @@ export function Faq() {
       id="faq"
       className="mx-auto grid max-w-[1200px] grid-cols-[repeat(auto-fit,minmax(min(100%,380px),1fr))] items-start gap-14 px-6 py-[clamp(80px,10vw,140px)]"
     >
-      <SectionTitle lead="Dúvidas frequentes." dim="Antes de vir." />
+      <SectionTitle lead="Dúvidas sobre a barbearia." dim="Antes de vir." />
       <div className="flex flex-col">
         {FAQS.map(([q, a], i) => {
           const isOpen = i === open;

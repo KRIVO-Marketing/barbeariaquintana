@@ -71,7 +71,7 @@ export function Booking() {
       <div className="rounded-3xl bg-sand px-[clamp(20px,4vw,64px)] py-[clamp(56px,7vw,104px)]">
         <div className="mx-auto grid max-w-[1200px] grid-cols-[repeat(auto-fit,minmax(min(100%,440px),1fr))] items-start gap-[clamp(40px,6vw,88px)]">
           <div className="flex flex-col gap-10 sm:gap-11">
-            <SectionTitle lead="Monte seu horário." dim="A mensagem vai pronta." />
+            <SectionTitle lead="Monte seu horário." dim="Serviço, dia e hora em poucos toques." />
 
             <fieldset className="m-0 flex min-w-0 flex-col gap-3.5 border-0 p-0">
               <legend className={cn(LABEL, "mb-3.5 p-0")}>Serviço</legend>

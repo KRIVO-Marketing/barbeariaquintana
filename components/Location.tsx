@@ -10,12 +10,13 @@ export function Location() {
     <section id="local" className="px-3 pb-3">
       <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))] overflow-hidden rounded-3xl bg-ink text-cream">
         <div className="flex flex-col gap-9 px-[clamp(24px,4vw,64px)] py-[clamp(40px,6vw,88px)]">
+          <p className="m-0 text-[13px] font-medium uppercase tracking-[0.18em] text-terra-light">Barbearia perto de você · Jardim Aurélia, Campinas</p>
           <h2 className="m-0 font-caslon text-[clamp(36px,4.8vw,66px)] font-normal leading-[1.04] tracking-[-0.01em] text-cream">
             Terça a sexta, das 8h às 19h. <span className="text-terra-light">Sábado, das 8h às 17h.</span>
           </h2>
           <div className="flex flex-col">
             <a href={MAPS_DIRECTIONS_URL} target="_blank" rel="noopener noreferrer" className={ROW}>
-              <address className="not-italic">Av. Nossa Senhora da Consolação, 821 · Jardim Aurélia</address>
+              <address className="not-italic">Av. Nossa Senhora da Consolação, 821 · Jardim Aurélia, Campinas - SP</address>
               <span aria-hidden="true">↗</span>
             </a>
             <a href={`tel:${PHONE_TEL}`} className={ROW}>

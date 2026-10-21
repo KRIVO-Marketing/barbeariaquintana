@@ -1,6 +1,7 @@
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 import { ArrowPill } from "./ArrowPill";
+import { ReviewsCarousel } from "./ReviewsCarousel";
 import { Star, Stars } from "./Stars";
 import { GOOGLE_PLACE_URL, GOOGLE_REVIEW_URL, RATING, REVIEWS } from "@/lib/data";
 
@@ -13,7 +14,9 @@ export function Reviews() {
             <Stars size={26} gap="gap-1" label={`Nota ${RATING.value} de 5`} />
             <span className="text-[15px] font-medium text-ink">{RATING.value}</span>
           </div>
-          <SectionTitle lead={`Nota ${RATING.value} no Google.`} dim={`Em ${RATING.count} avaliações.`} className="max-w-[14em]" />
+          <SectionTitle lead="Opiniões de clientes da Barbearia Quintana no Google."
+            dim={`Nota ${RATING.value} em ${RATING.count} avaliações.`}
+            className="max-w-[18em] text-balance" />
         </Reveal>
         <div className="flex w-full flex-col gap-2.5 sm:w-auto sm:flex-row sm:flex-wrap">
           <a
@@ -37,19 +40,9 @@ export function Reviews() {
           </ArrowPill>
         </div>
       </div>
-      <div className="mt-12 grid grid-cols-[repeat(auto-fit,minmax(min(100%,280px),1fr))] gap-10 sm:mt-16">
-        {REVIEWS.map((r) => (
-          <Reveal key={r.name}>
-            <figure className="m-0 flex flex-col gap-6 border-t border-line pt-6">
-              <Stars size={18} gap="gap-[3px]" label="5 de 5 estrelas" />
-              <blockquote className="m-0 text-pretty font-caslon text-2xl leading-[1.35] text-ink">
-                “{r.text}”
-              </blockquote>
-              <figcaption className="text-sm text-muted">{r.name} · Google</figcaption>
-            </figure>
-          </Reveal>
-        ))}
-      </div>
+      <Reveal>
+        <ReviewsCarousel reviews={REVIEWS} />
+      </Reveal>
     </section>
   );
 }

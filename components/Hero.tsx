@@ -25,15 +25,15 @@ export function Hero() {
 
         <HeaderNav />
 
-        <div className="pointer-events-none relative mt-auto flex max-w-[900px] flex-col gap-5 px-[clamp(16px,3vw,40px)] pb-[clamp(24px,4vw,48px)] sm:gap-[clamp(20px,2.4vw,28px)]">
+        <div className="relative mt-auto flex max-w-[1100px] flex-col gap-5 px-[clamp(16px,3vw,40px)] pb-[clamp(24px,4vw,48px)] sm:gap-[clamp(20px,2.4vw,28px)]">
           <p className="m-0 text-[13px] font-medium uppercase tracking-[0.18em] text-cream [text-shadow:0_1px_12px_rgba(42,33,27,0.5)]">
-            Barbearia em Campinas · Jardim Aurélia
+            Jardim Aurélia · De avô para neto, desde 2016
           </p>
-          <h1 className="m-0 text-balance font-caslon text-[clamp(44px,7.6vw,120px)] font-normal leading-none tracking-[-0.015em] text-cream [text-shadow:0_1px_16px_rgba(42,33,27,0.35)]">
-            Seu corte, na hora marcada.
+          <h1 className="m-0 text-balance font-caslon text-[clamp(36px,5.2vw,80px)] font-normal leading-[1.05] tracking-[-0.015em] text-cream [text-shadow:0_1px_16px_rgba(42,33,27,0.35)]">
+            Barbearia em Campinas, com corte e barba na hora marcada.
           </h1>
           <p className="m-0 max-w-[30em] text-[clamp(16px,1.3vw,19px)] leading-[1.55] text-cream [text-shadow:0_1px_12px_rgba(42,33,27,0.5)]">
-            Barbearia Quintana. Corte e barba no Jardim Aurélia, em Campinas, desde 2016.
+            Na Barbearia Quintana, no Jardim Aurélia, você escolhe o serviço e agenda pelo WhatsApp, sem fila.
           </p>
           <div className="pointer-events-auto flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <ArrowPill tone="light" href="#agendar" className="justify-between sm:justify-start">

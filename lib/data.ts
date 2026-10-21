@@ -47,7 +47,7 @@ export type Service = {
 export const SERVICES: Service[] = [
   { id: "corte", name: "Corte de cabelo", price: 60, desc: "Seu corte, do seu jeito." },
   { id: "corte-maquina", name: "Corte de cabelo", note: "máquina nº 0", price: 50, desc: "Rápido e na régua." },
-  { id: "barba", name: "Barba", price: 60, desc: "Navalha e toalha quente." },
+  { id: "barba", name: "Barba", price: 60, desc: "Navalha e toalha quente, como manda a tradição." },
   { id: "combo", name: "Cabelo e barba", price: 115, desc: "O visual completo, numa só visita." },
   { id: "acabamento", name: "Acabamento", price: 30, desc: "O corte sempre em dia." },
   { id: "acabamento-barba", name: "Acabamento de barba", price: 30, desc: "Contorno limpo e alinhado." },
@@ -94,21 +94,25 @@ export const CLUB_RULES = [
 ];
 
 export const PILLARS = [
-  { t: "Navalha e toalha quente", d: "As técnicas que vieram do avô, em cada barba." },
+  { t: "Ofício de família", d: "Navalha e toalha quente, o jeito que João aprendeu com o avô, barbeiro no Jardim Aurélia." },
   { t: "Hora marcada", d: "Você chega e é atendido, sem fila." },
-  { t: "Ar-condicionado e café", d: "E música boa enquanto você está na cadeira." },
+  { t: "Ambiente acolhedor", d: "Ar-condicionado, café e música boa, como os clientes contam nas avaliações." },
 ];
 
+/** Avaliações reais do Perfil da Empresa no Google (transcritas; trechos cortados marcados com …). */
 export const REVIEWS = [
-  { name: "Gabriel Moura", text: "Ambiente muito agradável, com ar condicionado, café e música boa." },
-  { name: "Gabriel Martins", text: "O dono é muito profissional, ambiente limpo e materiais de qualidade." },
-  { name: "Marcos Rogério C. Monteiro", text: "Ótimo atendimento, espaço agradável, excelente trabalho." },
+  { name: "Fellipe Paula", text: "Excelente profissional, barbearia impecável, com ar condicionado, serviço muito bom, preço justo e um ótimo atendimento!" },
+  { name: "Guilherme Albuquerque", text: "Sou muito grato pelo ótimo atendimento e pelo corte de cabelo excelente! Preço justo, bem localizado e ambiente muito agradável!" },
+  { name: "Marcelo Resck", text: "Já faço barba a anos com o João. Excelente profissional, super experiente e cobra um preço justo. Recomendo." },
+  { name: "Gilberto Akamatsu", text: "A barbearia é bacana, com alguns itens de decoração \"raiz\", e música ambiente de bom gosto. Sem contar a simpatia do profissional!" },
+  { name: "Gabriel Moura", text: "Ambiente muito agradável, com ar condicionado, café, e música boa. Excelente profissional, indico!" },
+  { name: "Beto Blues", text: "Joãozinho é gente boa e manda bem demais no corte. Recomendo." },
 ];
 
 export const FAQS: [string, string][] = [
   [
-    "Quanto custa um corte de cabelo na Barbearia Quintana?",
-    "Na Barbearia Quintana, em Campinas, o corte de cabelo custa R$ 60 (R$ 50 na máquina nº 0). A barba custa R$ 60 e o combo de cabelo e barba, R$ 115. Os demais valores estão na seção de serviços.",
+    "Quanto custa corte e barba em Campinas na Barbearia Quintana?",
+    "Na Barbearia Quintana, no Jardim Aurélia, em Campinas, o corte de cabelo custa R$ 60 (R$ 50 na máquina nº 0). A barba custa R$ 60 e o combo de cabelo e barba, R$ 115. Os demais valores estão na seção de serviços.",
   ],
   [
     "Quais serviços a Barbearia Quintana oferece e quanto custam?",
@@ -126,15 +130,19 @@ export const FAQS: [string, string][] = [
   ],
   [
     "Quais as formas de pagamento?",
-    "A Barbearia Quintana aceita cartões de crédito e débito e pagamento por aproximação no celular (NFC). Não aceita apenas dinheiro.",
+    "A Barbearia Quintana aceita cartões de crédito e débito e pagamento por aproximação no celular (NFC).",
   ],
   [
     "Tem estacionamento? Posso levar meu filho?",
-    "Sim, há estacionamento gratuito na rua em frente à Barbearia Quintana. O ambiente é bom para ir com crianças.",
+    "Sim. Há estacionamento gratuito na rua, perto da Barbearia Quintana, no Jardim Aurélia, em Campinas. O espaço é bom para ir com crianças, e o atendimento é com hora marcada.",
   ],
   [
-    "Onde fica a barbearia em Campinas?",
-    "A Barbearia Quintana fica na Av. Nossa Senhora da Consolação, 821, Jardim Aurélia, Campinas - SP, CEP 13033-140.",
+    "Qual a história da Barbearia Quintana?",
+    "A Barbearia Quintana nasceu de avô para neto. O avô de João Navero Quintana foi barbeiro no Jardim Aurélia por muitos anos. João fez o curso de barbeiro aos 13 anos e, aos 16, em 2016, abriu a própria barbearia em Campinas. A cadeira, as tesouras e outros itens antigos do avô ficam expostos no espaço.",
+  ],
+  [
+    "Onde fica a barbearia no Jardim Aurélia, em Campinas?",
+    "A Barbearia Quintana fica na Av. Nossa Senhora da Consolação, 821, Jardim Aurélia, Campinas - SP, CEP 13033-140. Abre de terça a sábado. Se você procura uma barbearia perto de você na região, a Quintana fica na Av. Nossa Senhora da Consolação, com rotas no Google Maps.",
   ],
   [
     "O que é o Clube Quintana?",
@@ -142,7 +150,7 @@ export const FAQS: [string, string][] = [
   ],
   [
     "Preciso agendar ou posso ir direto?",
-    "O atendimento na Barbearia Quintana é com hora marcada, para que você não espere. Se houver horário livre, encaixamos.",
+    "O atendimento na Barbearia Quintana é com hora marcada, para que você não espere. A forma mais simples de agendar é pelo WhatsApp (19) 99152-2327, escolhendo serviço, dia e horário aqui no site.",
   ],
 ];
 
@@ -172,11 +180,11 @@ export const JSON_LD = {
       name: "Barbearia Quintana",
       url: `${SITE_URL}/`,
       description:
-        "Barbearia no Jardim Aurélia, em Campinas, aberta em 2016. Corte, barba, acabamento e Clube Quintana, com hora marcada.",
+        "Barbearia no Jardim Aurélia, em Campinas, aberta em 2016 por João Navero Quintana, neto de barbeiro. Corte, barba, acabamento e Clube Quintana, com hora marcada.",
       image: `${SITE_URL}/opengraph-image`,
       logo: `${SITE_URL}/icon.png`,
       foundingDate: "2016-03-30",
-      founder: { "@type": "Person", name: "João Navero Quintana" },
+      founder: { "@type": "Person", name: "João Navero Quintana", jobTitle: "Barbeiro" },
       telephone: "+55 19 99152-2327",
       priceRange: "R$ 20 - R$ 360",
       currenciesAccepted: "BRL",
@@ -206,11 +214,6 @@ export const JSON_LD = {
         },
       ],
       paymentAccepted: "Cartão de crédito, cartão de débito, NFC",
-      amenityFeature: [
-        { "@type": "LocationFeatureSpecification", name: "Estacionamento gratuito na rua", value: true },
-        { "@type": "LocationFeatureSpecification", name: "Bom para ir com crianças", value: true },
-        { "@type": "LocationFeatureSpecification", name: "Banheiro", value: true },
-      ],
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: RATING.ratingValue,
@@ -238,6 +241,12 @@ export const JSON_LD = {
           })),
         ],
       },
+      amenityFeature: [
+        { "@type": "LocationFeatureSpecification", name: "Estacionamento gratuito na rua", value: true },
+        { "@type": "LocationFeatureSpecification", name: "Bom para ir com crianças", value: true },
+        { "@type": "LocationFeatureSpecification", name: "Banheiro", value: true },
+        { "@type": "LocationFeatureSpecification", name: "Atendimento com hora marcada", value: true },
+      ],
       sameAs: [INSTAGRAM_URL, FACEBOOK_URL, GOOGLE_PLACE_URL],
     },
     {

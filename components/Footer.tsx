@@ -10,7 +10,7 @@ export function Footer() {
         <span>© 2026 Barbearia Quintana · Campinas, SP</span>
       </div>
       <address className="basis-full not-italic leading-[1.6]">
-        Av. Nossa Senhora da Consolação, 821, Jardim Aurélia, Campinas - SP · Ter a sex, 8h às 19h · Sáb, 8h às 17h ·{" "}
+        Av. Nossa Senhora da Consolação, 821, Jardim Aurélia, Campinas - SP, CEP 13033-140 · Ter a sex, 8h às 19h · Sáb, 8h às 17h ·{" "}
         <a href="tel:+5519991522327" className="text-inherit hover:text-ink">
           (19) 99152-2327
         </a>

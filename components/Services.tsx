@@ -25,8 +25,8 @@ export function Services() {
     >
       <Reveal>
         <SectionTitle
-          lead="Serviços e valores."
-          dim="Escolha e agende."
+          lead="Corte e barba em Campinas."
+          dim="Serviços e valores."
           className="max-w-[14em]"
         />
         <p className="m-0 mt-5 text-[13px] uppercase tracking-[0.18em] text-muted">
