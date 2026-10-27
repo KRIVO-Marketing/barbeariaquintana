@@ -45,3 +45,11 @@ _original/
 
 identidade-visual.md
 
+
+# OpenNext
+.open-next
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
