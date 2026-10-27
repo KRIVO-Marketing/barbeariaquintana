@@ -27,13 +27,23 @@ const u = (id: string, w = 1200) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`;
 
 export const IMAGES = {
-  hero: u("1585747860715-2ba37e788b70", 2000),
+  // alternativa: "/assets/fachada-rua.webp" (enquadramento mais aberto)
+  hero: "/assets/fachada.webp",
   avo: u("1567894340315-735d7c361db0"),
   antes: u("1517832606299-7ae9b720a186"),
   g1: u("1503951914875-452162b0f3f1"),
   g2: u("1622286342621-4bd786c2447c"),
   g3: u("1599351431202-1e0f0137899a"),
   g4: u("1512690459411-b9245aed614b"),
+  // fotos próprias da barbearia (public/assets)
+  cadeiraAvo: "/assets/cadeira-do-avo.webp",
+  joao: "/assets/joao-quintana.webp",
+  interior: "/assets/barbearia-interior.webp",
+  maquinaNuca: "/assets/maquina-nuca.webp",
+  maquinaLateral: "/assets/maquina-lateral.webp",
+  vitrolaDetalhes: "/assets/vitrola-detalhes.webp",
+  armadura: "/assets/armadura-parede.webp",
+  som: "/assets/aparelho-de-som.webp",
 };
 
 export type Service = {

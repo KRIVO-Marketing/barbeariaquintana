@@ -13,16 +13,16 @@ export function History() {
           className="max-w-[16em] text-balance"
         />
       </Reveal>
-      <div className="mt-12 grid grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))] items-start gap-12 sm:mt-16">
-        <Reveal className="grid grid-cols-2 gap-3">
+      <div className="mt-12 grid grid-cols-1 items-start gap-12 min-[940px]:grid-cols-[1.4fr_1fr] sm:mt-16">
+        <Reveal className="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_1.12fr]">
           <figure className="m-0 flex flex-col gap-2.5">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
-              <Photo src={IMAGES.avo} alt="Ambiente clássico de barbearia" sizes="(min-width:1200px) 290px, (min-width:940px) 25vw, 45vw" />
+            <div className="relative aspect-[3/4] overflow-hidden rounded-[20px]">
+              <Photo src={IMAGES.cadeiraAvo} alt="Cadeira de barbeiro antiga herdada do avô de João Quintana" position="50% 40%" sizes="(min-width:1200px) 340px, (min-width:940px) 30vw, (min-width:640px) 45vw, 92vw" />
             </div>
           </figure>
-          <figure className="m-0 mt-12 flex flex-col gap-2.5">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
-              <Photo src={IMAGES.antes} alt="Interior de barbearia tradicional" sizes="(min-width:1200px) 290px, (min-width:940px) 25vw, 45vw" />
+          <figure className="m-0 flex flex-col gap-2.5 sm:mt-16">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-[20px]">
+              <Photo src={IMAGES.joao} alt="João Navero Quintana, barbeiro e fundador da Barbearia Quintana, em Campinas" position="50% 25%" sizes="(min-width:1200px) 340px, (min-width:940px) 30vw, (min-width:640px) 45vw, 92vw" />
             </div>
           </figure>
         </Reveal>

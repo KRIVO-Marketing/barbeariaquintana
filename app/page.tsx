@@ -6,6 +6,7 @@ import { Faq } from "@/components/Faq";
 import { Footer } from "@/components/Footer";
 import { Gallery } from "@/components/Gallery";
 import { Hero } from "@/components/Hero";
+import { Marquee } from "@/components/Marquee";
 import { History } from "@/components/History";
 import { Location } from "@/components/Location";
 import { Reviews } from "@/components/Reviews";
@@ -21,6 +22,7 @@ export default function Home() {
       />
       <main className="min-h-svh overflow-x-clip bg-cream text-ink">
         <Hero />
+        <Marquee />
         <History />
         <Services />
         <Club />
