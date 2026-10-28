@@ -10,7 +10,23 @@ import { PHONE_LABEL, SERVICES, WHATSAPP, brl, serviceLabel, timesFor } from "@/
 import { cn } from "@/lib/cn";
 
 const WD_LONG = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"];
-const MAX_DAYS_AHEAD = 90;
+const WD_SHORT = ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"];
+const DAYS_SHOWN = 5;
+/** Hora em que a barbearia fecha: sábado 17h, terça a sexta 19h. */
+const closingHour = (weekday: number) => (weekday === 6 ? 17 : 19);
+
+/** Próximos dias abertos (terça a sábado), a partir de hoje. Hoje só entra se ainda não fechou. */
+function nextOpenDays(now: Date, count: number) {
+  const days: Date[] = [];
+  for (let i = 0; days.length < count; i++) {
+    const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+    const wd = d.getDay();
+    if (wd < 2) continue;
+    if (i === 0 && now.getHours() >= closingHour(wd)) continue;
+    days.push(d);
+  }
+  return days;
+}
 
 const pad = (n: number) => String(n).padStart(2, "0");
 const toIso = (d: Date) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
@@ -28,26 +44,23 @@ const LABEL = "text-sm font-medium text-soft";
 
 export function Booking() {
   const { service, setService } = useBooking();
-  const [range, setRange] = useState<{ min: string; max: string } | null>(null);
+  const [days, setDays] = useState<Date[] | null>(null);
   const [date, setDate] = useState("");
   const [rawTime, setTime] = useState<string | null>(null);
   const [name, setName] = useState("");
   const [confirming, setConfirming] = useState(false);
 
-  // Limites dependem do relógio do visitante: calculados só no cliente.
+  // Os dias dependem do relógio do visitante: calculados só no cliente.
   useEffect(() => {
-    const now = new Date();
-    const max = new Date(now.getFullYear(), now.getMonth(), now.getDate() + MAX_DAYS_AHEAD);
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setRange({ min: toIso(now), max: toIso(max) });
+    setDays(nextOpenDays(new Date(), DAYS_SHOWN));
   }, []);
 
   const svc = SERVICES.find((s) => s.id === service) ?? SERVICES[0];
   const picked = date ? parseIso(date) : null;
-  const closed = !!picked && picked.getDay() < 2;
-  const times = timesFor(picked && !closed ? picked.getDay() : null);
+  const times = timesFor(picked ? picked.getDay() : null);
   const dObj =
-    picked && !closed
+    picked
       ? { long: `${WD_LONG[picked.getDay()]}, ${pad(picked.getDate())}/${pad(picked.getMonth() + 1)}` }
       : null;
   const trimmed = name.trim();
@@ -93,30 +106,32 @@ export function Booking() {
               </div>
             </fieldset>
 
-            <div className="flex flex-col gap-3.5">
-              <label htmlFor="data" className={LABEL}>
-                Dia de preferência
-              </label>
-              <input
-                id="data"
-                type="date"
-                value={date}
-                min={range?.min}
-                max={range?.max}
-                onChange={(e) => setDate(e.target.value)}
-                aria-invalid={closed}
-                aria-describedby={closed ? "data-erro" : undefined}
-                className={cn(
-                  "block min-h-[52px] w-full min-w-0 appearance-none rounded-full border bg-cream px-5 text-left text-base text-ink [color-scheme:light] outline-none focus:border-terra focus:shadow-[0_0_0_3px_rgba(200,109,81,0.18)]",
-                  closed ? "border-terra-dark" : "border-line-input",
-                )}
-              />
-              {closed && (
-                <p id="data-erro" role="alert" className="m-0 text-[13px] leading-[1.5] text-terra-dark">
-                  Não abrimos aos domingos e segundas. Escolha um dia de terça a sábado.
-                </p>
-              )}
-            </div>
+            <fieldset className="m-0 flex min-w-0 flex-col gap-3.5 border-0 p-0">
+              <legend className={cn(LABEL, "mb-3.5 p-0")}>Dia de preferência</legend>
+              <div className="grid grid-cols-5 gap-2">
+                {(days ?? Array.from({ length: DAYS_SHOWN }, () => null)).map((d, i) => {
+                  const iso = d ? toIso(d) : "";
+                  const on = !!d && iso === date;
+                  return (
+                    <button
+                      key={iso || i}
+                      type="button"
+                      disabled={!d}
+                      aria-pressed={on}
+                      aria-label={d ? `${WD_LONG[d.getDay()]}, ${d.getDate()}` : undefined}
+                      onClick={() => setDate(on ? "" : iso)}
+                      className={cn(
+                        "flex min-h-[76px] flex-col items-center justify-center gap-1 rounded-[20px] border transition-all duration-150",
+                        chip(on),
+                      )}
+                    >
+                      <span className="text-[13px] leading-none">{d ? WD_SHORT[d.getDay()] : "\u00a0"}</span>
+                      <span className="text-[22px] font-medium leading-none">{d ? d.getDate() : "\u00a0"}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </fieldset>
 
             <fieldset className="m-0 flex min-w-0 flex-col gap-3.5 border-0 p-0">
               <legend className={cn(LABEL, "mb-3.5 p-0")}>Horário de preferência</legend>
@@ -184,9 +199,7 @@ export function Booking() {
             >
               {canSend
                 ? "O horário é confirmado pelo João na conversa."
-                : closed
-                  ? "Escolha um dia de terça a sábado e um horário para enviar."
-                  : "Escolha o dia e o horário para poder enviar."}
+                : "Escolha o dia e o horário para poder enviar."}
             </span>
           </aside>
         </div>
