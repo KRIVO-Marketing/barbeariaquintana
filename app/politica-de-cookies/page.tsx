@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 
 const ROWS: [string, string, string, string, string][] = [
   ["quintana_consent", "Necessário", "Barbearia Quintana", "Guarda a sua escolha de cookies.", "6 meses"],
-  ["_ga, _ga_*", "Estatísticas", "Google Analytics", "Distingue visitantes e mede o uso do site.", "até 2 anos"],
-  ["_fbp", "Marketing", "Meta (Pixel)", "Identifica o navegador para medir anúncios.", "até 3 meses"],
+  ["_ga, _ga_*", "Estatísticas", "Google Analytics (via Google Tag Manager)", "Distingue visitantes e mede o uso do site.", "até 2 anos"],
+  ["_fbp", "Marketing", "Meta Pixel (via Google Tag Manager)", "Identifica o navegador para medir anúncios.", "até 3 meses"],
 ];
 
 export default function Page() {
@@ -26,6 +26,12 @@ export default function Page() {
         <p>
           Só o cookie necessário é usado desde o início. Os de estatísticas e de marketing ficam desligados até
           você aceitar, e você pode recusar sem perder nenhuma função do site.
+        </p>
+        <p>
+          Usamos o Google Tag Manager para organizar as ferramentas de medição. Ele respeita a sua escolha por
+          meio do Modo de Consentimento do Google (Consent Mode v2): enquanto você não aceitar, os sinais de
+          armazenamento de estatísticas e de anúncios permanecem negados e as tags de Google Analytics e Meta
+          não gravam cookies de medição nem de anúncios.
         </p>
         <p className="!mt-4">
           <OpenCookieSettings />
@@ -41,10 +47,13 @@ export default function Page() {
           </li>
           <li>
             <strong>Estatísticas:</strong> mostram como o site é usado, como páginas e seções vistas e cliques em
-            Agendar e WhatsApp, para melhorarmos o conteúdo.
+            Agendar e WhatsApp, para melhorarmos o conteúdo. Ao aceitar, autoriza o armazenamento de estatísticas
+            (<code>analytics_storage</code>).
           </li>
           <li>
-            <strong>Marketing:</strong> medem o resultado dos anúncios da barbearia no Instagram e no Facebook.
+            <strong>Marketing:</strong> medem o resultado dos anúncios da barbearia no Instagram e no Facebook. Ao
+            aceitar, autoriza o armazenamento de anúncios, o envio de dados do usuário e a personalização de
+            anúncios (<code>ad_storage</code>, <code>ad_user_data</code> e <code>ad_personalization</code>).
           </li>
         </ul>
       </section>
@@ -77,7 +86,7 @@ export default function Page() {
         </div>
         <p className="!mt-4">
           Os cookies de estatísticas e marketing só existem se estiverem ativados pela barbearia e se você
-          aceitar. Os nomes e prazos podem variar conforme as ferramentas atualizam seus sistemas.
+          aceitar. O Google Tag Manager em si não grava cookies de medição. Os nomes e prazos podem variar conforme as ferramentas atualizam seus sistemas.
         </p>
       </section>
 
@@ -99,7 +108,8 @@ export default function Page() {
           </li>
         </ul>
         <p>
-          Ao revogar o consentimento, limpamos os cookies de estatísticas e marketing e recarregamos a página.
+          Ao revogar o consentimento, limpamos os cookies de estatísticas e marketing, atualizamos o Modo de
+          Consentimento do Google para “negado” e recarregamos a página.
         </p>
       </section>
 

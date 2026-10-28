@@ -1,4 +1,4 @@
-import { SITE_URL } from "@/lib/site";
+avisimport { SITE_URL } from "@/lib/site";
 import {
   CLUB_PLANS,
   FAQS,

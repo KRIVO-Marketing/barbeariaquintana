@@ -16,9 +16,8 @@ export const MAPS_EMBED_URL =
 /** Nota do Google (atualize junto com o perfil). */
 export const RATING = { value: "4,9", ratingValue: "4.9", count: 44 };
 
-/** IDs de rastreamento (definidos em .env.local). Vazios = nenhum script é carregado. */
-export const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "";
-export const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "";
+/** Google Analytics 4 (carregado em components/Analytics.tsx, após o aceite de estatísticas). */
+export const GA_ID = "G-Z1F7L3DBNR";
 
 /** Vídeo opcional do hero (loop horizontal). Vazio = usa a foto. */
 export const HERO_VIDEO = "";

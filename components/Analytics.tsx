@@ -4,7 +4,7 @@ import Script from "next/script";
 import { useEffect } from "react";
 import { useConsent } from "./ConsentProvider";
 import { track } from "@/lib/track";
-import { GA_ID, META_PIXEL_ID, WHATSAPP } from "@/lib/data";
+import { GA_ID, WHATSAPP } from "@/lib/data";
 
 const SECTIONS = ["servicos", "clube", "agendar", "avaliacoes", "faq"];
 
@@ -20,14 +20,14 @@ function autoEvent(a: HTMLAnchorElement): [string, string] | null {
 }
 
 /**
- * Carrega GA4 e Meta Pixel só depois do consentimento e dispara os eventos do site.
- * Sem os IDs em .env (NEXT_PUBLIC_GA_ID / NEXT_PUBLIC_META_PIXEL_ID), não carrega nada.
+ * Dispara os eventos do site no dataLayer, só depois do consentimento.
+ * O GA4 é carregado aqui (gtag.js), só com o aceite de estatísticas. O Meta Pixel fica no GTM
+ * (container GTM-N777QPFQ), respeitando o Consent Mode. Não crie uma tag GA4 no GTM: duplicaria as visitas.
  */
 export function Analytics() {
   const { consent } = useConsent();
-  const analytics = !!consent?.analytics && !!GA_ID;
-  const marketing = !!consent?.marketing && !!META_PIXEL_ID;
-  const active = analytics || marketing;
+  const analytics = !!consent?.analytics;
+  const active = !!consent?.analytics || !!consent?.marketing;
 
   useEffect(() => {
     if (!active) return;
@@ -65,26 +65,14 @@ export function Analytics() {
     };
   }, [active]);
 
+  if (!analytics) return null;
   return (
     <>
-      {analytics && (
-        <>
-          <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
-          <Script id="ga-init" strategy="afterInteractive">{`
-            window.dataLayer = window.dataLayer || [];
-            window.gtag = function(){ dataLayer.push(arguments); };
-            gtag('js', new Date());
-            gtag('config', '${GA_ID}', { anonymize_ip: true });
-          `}</Script>
-        </>
-      )}
-      {marketing && (
-        <Script id="meta-pixel" strategy="afterInteractive">{`
-          !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', '${META_PIXEL_ID}');
-          fbq('track', 'PageView');
-        `}</Script>
-      )}
+      <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+      <Script id="ga-init" strategy="afterInteractive">{`
+        gtag('js', new Date());
+        gtag('config', '${GA_ID}');
+      `}</Script>
     </>
   );
 }
