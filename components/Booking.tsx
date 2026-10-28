@@ -27,7 +27,7 @@ const chip = (on: boolean) =>
 const LABEL = "text-sm font-medium text-soft";
 
 export function Booking() {
-  const { service, setService } = useBooking();
+  const { services, toggleService } = useBooking();
   const [range, setRange] = useState<{ min: string; max: string } | null>(null);
   const [date, setDate] = useState("");
   const [rawTime, setTime] = useState<string | null>(null);
@@ -42,7 +42,9 @@ export function Booking() {
     setRange({ min: toIso(now), max: toIso(max) });
   }, []);
 
-  const svc = SERVICES.find((s) => s.id === service) ?? SERVICES[0];
+  const chosen = SERVICES.filter((s) => services.includes(s.id));
+  const chosenLabel = chosen.map(serviceLabel).join(" + ");
+  const total = chosen.reduce((sum, s) => sum + s.price, 0);
   const picked = date ? parseIso(date) : null;
   const closed = !!picked && picked.getDay() < 2;
   const times = timesFor(picked && !closed ? picked.getDay() : null);
@@ -52,17 +54,18 @@ export function Booking() {
       : null;
   const trimmed = name.trim();
   const time = rawTime && times.includes(rawTime) ? rawTime : null;
-  const canSend = !!dObj && !!time;
+  const canSend = chosen.length > 0 && !!dObj && !!time;
 
   const summary = [
-    ["Serviço", `${serviceLabel(svc)} · ${brl(svc.price)}`],
+    [chosen.length > 1 ? "Serviços" : "Serviço", chosen.length ? chosenLabel : "Escolha o serviço"],
+    ["Valor", chosen.length ? brl(total) : "—"],
     ["Dia", dObj ? dObj.long : "Escolha o dia"],
     ["Horário", time ?? "Escolha o horário"],
     ["Nome", trimmed || "—"],
   ];
   const msg =
     "Olá! Gostaria de agendar na Barbearia Quintana.\n\n" +
-    `Serviço: ${serviceLabel(svc)}\nDia: ${dObj ? dObj.long : "sem preferência"}\nHorário: ${time ?? "sem preferência"}` +
+    `${chosen.length > 1 ? "Serviços" : "Serviço"}: ${chosenLabel}\nValor: ${brl(total)}\nDia: ${dObj ? dObj.long : "sem preferência"}\nHorário: ${time ?? "sem preferência"}` +
     (trimmed ? `\nNome: ${trimmed}` : "");
   const waLink = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
@@ -74,17 +77,17 @@ export function Booking() {
             <SectionTitle lead="Monte seu horário." dim="Serviço, dia e hora em poucos toques." />
 
             <fieldset className="m-0 flex min-w-0 flex-col gap-3.5 border-0 p-0">
-              <legend className={cn(LABEL, "mb-3.5 p-0")}>Serviço</legend>
+              <legend className={cn(LABEL, "mb-3.5 p-0")}>Serviços (pode escolher mais de um)</legend>
               <div className="flex flex-wrap gap-2">
                 {SERVICES.map((s) => (
                   <button
                     key={s.id}
                     type="button"
-                    aria-pressed={s.id === service}
-                    onClick={() => setService(s.id)}
+                    aria-pressed={services.includes(s.id)}
+                    onClick={() => toggleService(s.id)}
                     className={cn(
                       "min-h-[46px] rounded-full border px-5 text-[15px] font-medium transition-all duration-150",
-                      chip(s.id === service),
+                      chip(services.includes(s.id)),
                     )}
                   >
                     {serviceLabel(s)}
@@ -186,7 +189,7 @@ export function Booking() {
                 ? "O horário é confirmado pelo João na conversa."
                 : closed
                   ? "Escolha um dia de terça a sábado e um horário para enviar."
-                  : "Escolha o dia e o horário para poder enviar."}
+                  : "Escolha o serviço, o dia e o horário para poder enviar."}
             </span>
           </aside>
         </div>
@@ -194,7 +197,7 @@ export function Booking() {
           open={confirming && canSend}
           onClose={() => setConfirming(false)}
           href={waLink}
-          details={[serviceLabel(svc), dObj?.long, time].filter(Boolean).join(" · ")}
+          details={[chosenLabel, dObj?.long, time].filter(Boolean).join(" · ")}
         />
       </div>
     </section>
