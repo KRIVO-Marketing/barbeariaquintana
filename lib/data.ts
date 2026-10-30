@@ -159,10 +159,10 @@ export const FAQS: [string, string][] = [
   ],
 ];
 
-const ALL_TIMES = [
-  "08:00", "09:00", "10:00", "11:00", "12:00", "13:00",
-  "14:00", "15:00", "16:00", "17:00", "18:00",
-];
+const ALL_TIMES = Array.from({ length: 22 }, (_, i) => {
+  const mins = 8 * 60 + i * 30;
+  return `${String(Math.floor(mins / 60)).padStart(2, "0")}:${mins % 60 ? "30" : "00"}`;
+}); // 08:00 a 18:30
 
 /** Horários oferecidos: terça a sexta até as 19h, sábado até as 17h. */
 export const timesFor = (weekday: number | null) =>
